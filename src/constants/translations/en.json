@@ -1,0 +1,273 @@
+{
+    "nav": {
+        "home": "Home",
+        "about": "About",
+        "products": "Products",
+        "compliance": "Compliance",
+        "contact": "Contact",
+        "requestQuote": "Request a Quote"
+    },
+    "footer": {
+        "description": "Engineering excellence in fire protection and safety solutions by GHaus Corp. Trusted by governments, industries, and enterprises worldwide.",
+        "quickInquiry": "QUICK INQUIRY",
+        "quickLinks": "QUICK LINKS",
+        "products": "PRODUCTS",
+        "contactInfo": "CONTACT INFO",
+        "rights": "All rights reserved.",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Service",
+        "success": "Inquiry sent successfully! We'll get back to you soon.",
+        "sendAnother": "Send another",
+        "namePlaceholder": "Your Name",
+        "emailPlaceholder": "Email Address",
+        "messagePlaceholder": "Your Message",
+        "captchaQuestion": "What is {{num1}} + {{num2}}?",
+        "captchaAnswer": "Answer",
+        "sendButton": "Send Inquiry",
+        "sending": "Sending..."
+    },
+    "home": {
+        "hero": {
+            "tagline": "GHaus Corp — Fire & Safety Solutions",
+            "titlePart1": "PROTECTING LIVES & ",
+            "titleHighlight": "INFRASTRUCTURE",
+            "titlePart2": " WORLDWIDE",
+            "subtitle": "Engineering excellence in fire protection, safety systems, and turnkey solutions. Trusted by governments, industries, and enterprises across 45+ countries.",
+            "explore": "Explore Solutions",
+            "contact": "Contact Us"
+        },
+        "stats": {
+            "mena": "Country in MENA Region",
+            "projects": "Projects Completed",
+            "years": "Years of Experience",
+            "products": "Products"
+        },
+        "solutions": {
+            "tagline": "Our Solutions",
+            "title": "PRODUCT CATEGORIES",
+            "subtitle": "Complete range of fire protection and safety products engineered for reliability and compliance.",
+            "categories": {
+                "lighting": {
+                    "title": "Lighting",
+                    "desc": "Architectural & Façade lighting"
+                },
+                "devices": {
+                    "title": "Devices & Controls",
+                    "desc": "Heat detectors, manual call points"
+                },
+                "suppression": {
+                    "title": "Suppression Systems",
+                    "desc": "High quality portable extinguishers & water mist systems."
+                },
+                "valves": {
+                    "title": "Valves",
+                    "desc": "Gate, Butterfly, Check, Ball, Strainers, Pressure regulation"
+                },
+                "safety": {
+                    "title": "Safety Equipment",
+                    "desc": "Eyewash/Facewash, Safety showers, Emergency showers, Combination showers, tank showers"
+                },
+                "electrical": {
+                    "title": "Electrical & Accessories",
+                    "desc": "Emergency lights and exit signage. Flow switches, pressure switches, explosion proof devices."
+                }
+            }
+        },
+        "industries": {
+            "tagline": "Industries We Serve",
+            "title": "TRUSTED ACROSS SECTORS",
+            "names": {
+                "oilGas": "Oil & Gas",
+                "airports": "Airports",
+                "marine": "Marine",
+                "commercial": "Commercial",
+                "hospitals": "Hospitals",
+                "industrial": "Industrial",
+                "infrastructure": "Infrastructure"
+            }
+        },
+        "reach": {
+            "tagline": "Our Reach",
+            "title": "GLOBAL PRESENCE",
+            "subtitle": "With offices and partners across the globe, we deliver fire & safety solutions wherever you need them.",
+            "locations": {
+                "northAmerica": "North America",
+                "usaCanada": "USA & Canada",
+                "uae": "UAE",
+                "dubai": "Dubai",
+                "uk": "UK",
+                "birmingham": "Birmingham",
+                "india": "India",
+                "bangalore": "Bangalore"
+            }
+        },
+        "standards": {
+            "tagline": "Compliance & Standards",
+            "title": "COMPLIANCE & LISTINGS",
+            "labels": {
+                "fireProtection": "Fire Protection",
+                "productSafety": "Product Safety",
+                "lossPrevention": "Loss Prevention",
+                "govApproval": "Government Approval"
+            }
+        }
+    },
+    "about": {
+        "hero": {
+            "tagline": "Engineering Excellence",
+            "titlePart1": "LEGACY OF SAFETY & ",
+            "titleHighlight": "INNOVATION",
+            "subtitle": "For over a decade, Ghaus Corp has been at the forefront of the fire protection and safety industry, delivering world-class engineering solutions to protect what matters most."
+        },
+        "mission": {
+            "title": "Our Mission",
+            "desc": "To provide innovative, reliable, and compliant fire and safety solutions that ensure the highest level of protection for lives and infrastructure globally."
+        },
+        "vision": {
+            "title": "Our Vision",
+            "desc": "To be the world's most trusted partner in fire safety, recognized for engineering excellence, quality products, and unwavering commitment to safety."
+        },
+        "quality": {
+            "title": "Quality Assurance",
+            "desc": "Our products undergo rigorous testing and quality control processes to meet the most demanding international standards.",
+            "points": {
+                "testing": "Rigorous Testing & Certification",
+                "rd": "Continuous R&D",
+                "solutions": "Custom Engineered Solutions"
+            }
+        },
+        "compliance": {
+            "title": "Global Compliance",
+            "desc": "We take pride in our extensive certifications and approvals from the world's leading safety organizations."
+        }
+    },
+    "products": {
+        "title": "PRODUCT CATEGORIES",
+        "tagline": "Our Products",
+        "subtitle": "Browse our comprehensive range of fire protection and safety products, each engineered for reliability and tested to international standards.",
+        "viewProducts": "View Products",
+        "viewAll": "View All Products",
+        "categories": {
+            "valves": {
+                "title": "Valves",
+                "desc": "Comprehensive range of fire protection valves for sizes below 2 ½”.",
+                "items": [
+                    "Gate",
+                    "Butterfly",
+                    "Check",
+                    "Ball",
+                    "Strainers",
+                    "Pressure regulation",
+                    "Test & Drain valves",
+                    "Air release valves"
+                ]
+            },
+            "devices": {
+                "title": "Devices & Controls",
+                "desc": "State-of-the-art devices & controls including critical areas with explosion proof options.",
+                "items": [
+                    "Heat detectors",
+                    "Manual call points"
+                ]
+            },
+            "suppression": {
+                "title": "Suppression Systems",
+                "desc": "High quality portable extinguishers & water mist systems.",
+                "items": [
+                    "ABC Dry powder",
+                    "CO2",
+                    "Foam",
+                    "Water Mist"
+                ]
+            },
+            "safety": {
+                "title": "Safety Equipment",
+                "desc": "Safety products manufactured to the highest standards in the industry including customized solutions to suit your challenging project requirements.",
+                "items": [
+                    "Eyewash/Facewash",
+                    "Safety showers",
+                    "Combination showers",
+                    "Chilled outdoor safety showers",
+                    "Solar powered chilled outdoor showers"
+                ]
+            },
+            "lighting": {
+                "title": "Lighting Products",
+                "desc": "Specially crafted products with precision to provide efficient & intelligent lighting solutions for your assets.",
+                "items": [
+                    "Architectural",
+                    "Façade lighting"
+                ]
+            },
+            "electrical": {
+                "title": "Electric & Accessories",
+                "desc": "Electrical devices & controls from the pioneers in the industry.",
+                "items": [
+                    "Flow switches",
+                    "Pressure switches",
+                    "Explosion proof devices",
+                    "Supervisory switches",
+                    "Emergency lights and exit signage",
+                    "Air compressors",
+                    "Pressure gauges",
+                    "Flow meters"
+                ]
+            }
+        }
+    },
+    "compliance": {
+        "title": "Compliance & Listings",
+        "subtitle": "We maintain the highest international certifications and comply with all major fire safety standards, ensuring trust and reliability worldwide.",
+        "certs": {
+            "nfpa": {
+                "name": "NFPA Compliance",
+                "category": "Fire Protection",
+                "desc": "Full compliance with National Fire Protection Association codes and standards.",
+                "authority": "NFPA, USA"
+            },
+            "ul": {
+                "name": "UL Listed",
+                "category": "Product Safety",
+                "desc": "Products tested and certified by Underwriters Laboratories for safety compliance.",
+                "authority": "UL LLC, USA"
+            },
+            "fm": {
+                "name": "FM Approved",
+                "category": "Loss Prevention",
+                "desc": "Factory Mutual approval for property loss prevention products and services.",
+                "authority": "FM Global, USA"
+            },
+            "civilDefense": {
+                "name": "Civil Defense Approved",
+                "category": "Government Approval",
+                "desc": "Approved by civil defense authorities across multiple countries for fire safety installations.",
+                "authority": "Multiple Government Authorities"
+            }
+        }
+    },
+    "contact": {
+        "title": "CONTACT US",
+        "tagline": "Get in Touch",
+        "subtitle": "Reach out to our global team for inquiries, quotes or partnership opportunities.",
+        "formTitle": "SEND AN INQUIRY",
+        "successMessage": "Message sent successfully! We respond within 24 hours.",
+        "fullName": "Full Name",
+        "companyName": "Company Name",
+        "email": "Email Address",
+        "phone": "Phone Number",
+        "subject": "Subject",
+        "message": "Tell us about your requirements...",
+        "securityCheck": "Security Check: What is {{num1}} + {{num2}}?",
+        "answer": "Answer",
+        "sendButton": "Send Message",
+        "sending": "Sending...",
+        "respondTime": "We respond within 24 hours",
+        "globalOffices": "GLOBAL OFFICES",
+        "offices": {
+            "canada": "Ontario, Canada",
+            "uae": "Dubai, UAE",
+            "uk": "West Midlands, UK",
+            "india": "Bangalore, India"
+        }
+    }
+}
