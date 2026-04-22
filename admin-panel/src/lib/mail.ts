@@ -64,7 +64,7 @@ export async function sendEnquiryEmail(data: EnquiryEmailData) {
           </div>
 
           <div style="margin-top: 32px; text-align: center;">
-            <a href="${process.env.ADMIN_PANEL_URL || 'https://ghaus-admin.vercel.app'}" style="background-color: #a91d1d; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block;">View in Admin Panel</a>
+            <a href="${process.env.ADMIN_PANEL_URL || 'https://admin.ghausglobal.com'}" style="background-color: #a91d1d; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block;">View in Admin Panel</a>
           </div>
         </div>
         <div style="background-color: #f3f4f6; color: #6b7280; padding: 16px; text-align: center; font-size: 12px;">

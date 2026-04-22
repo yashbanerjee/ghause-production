@@ -21,7 +21,8 @@ app.use(
     cors({
         origin: [
             "https://www.ghausglobal.com",
-            "https://ghaus-website-kpmse7k3v-mohd-saad-bhatis-projects.vercel.app"
+            "https://ghausglobal.com",
+            "https://admin.ghausglobal.com"
         ],
         methods: ["GET", "POST", "PUT", "DELETE"],
         credentials: true
