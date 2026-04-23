@@ -1,18 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import prisma from '@/lib/db';
-
-    
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "https://www.ghausglobal.com",
-  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type, Authorization, Cache-Control, Pragma, Expires",
-  "Cache-Control": "no-store, max-age=0, must-revalidate",
-  "Pragma": "no-cache",
-  "Expires": "0",
-};
+import { getCorsHeaders } from '@/lib/cors';
 
 export async function POST(req: NextRequest) {
+  const origin = req.headers.get('origin');
+  const corsHeaders = {
+    ...getCorsHeaders(origin),
+    "Cache-Control": "no-store, max-age=0, must-revalidate",
+    "Pragma": "no-cache",
+    "Expires": "0",
+  };
+
   try {
     const body = await req.json();
     const { 
@@ -82,7 +81,7 @@ export async function POST(req: NextRequest) {
                     ${address ? `<tr><td style="padding: 10px; border-bottom: 1px solid #eee; background: #fafafa;"><strong>Address/City:</strong></td><td style="padding: 10px; border-bottom: 1px solid #eee;">${address}</td></tr>` : ''}
                     ${country ? `<tr><td style="padding: 10px; border-bottom: 1px solid #eee; background: #fafafa;"><strong>Country:</strong></td><td style="padding: 10px; border-bottom: 1px solid #eee;">${country}</td></tr>` : ''}
                 </table>
-
+1
                 <div style="margin-top: 24px; padding: 16px; background: #f8f9fa; border-radius: 6px; border-left: 4px solid #a91d1d; text-align: left;">
                     <p style="margin: 0 0 10px 0;"><strong>Message/Comments:</strong></p>
                     <div style="white-space: pre-wrap; color: #444;">${message}</div>
@@ -117,9 +116,9 @@ export async function POST(req: NextRequest) {
   }
 }
 
-export async function OPTIONS() {
+export async function OPTIONS(req: NextRequest) {
   return new NextResponse(null, {
     status: 200,
-    headers: corsHeaders,
+    headers: getCorsHeaders(req.headers.get('origin')),
   });
 }

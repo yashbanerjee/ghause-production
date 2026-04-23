@@ -107,7 +107,27 @@
   }
 
   .PhoneInputInput {
-    @apply flex-1 bg-transparent border-none outline-none focus-visible:outline-none focus:ring-0 ml-2 text-sm text-foreground placeholder:text-muted-foreground;
+    @apply flex-1 ml-2 text-sm text-foreground placeholder:text-muted-foreground;
+    background: transparent !important;
+    background-color: transparent !important;
+    border: 0 !important;
+    border-width: 0 !important;
+    border-color: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+    --tw-ring-shadow: 0 0 #0000 !important;
+    --tw-ring-offset-shadow: 0 0 #0000 !important;
+  }
+  .PhoneInputInput:focus {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: 0 !important;
+    border-width: 0 !important;
+    border-color: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+    --tw-ring-shadow: 0 0 #0000 !important;
+    --tw-ring-offset-shadow: 0 0 #0000 !important;
   }
 }
 

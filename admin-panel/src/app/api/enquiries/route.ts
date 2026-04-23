@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/db';
 import { sendEnquiryEmail } from '@/lib/mail';
+import { getCorsHeaders } from '@/lib/cors';
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -49,9 +50,7 @@ export async function GET(req: NextRequest) {
         'Cache-Control': 'no-store, max-age=0, must-revalidate',
         'Pragma': 'no-cache',
         'Expires': '0',
-        "Access-Control-Allow-Origin": "https://www.ghausglobal.com",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization, Cache-Control, Pragma, Expires",
+        ...getCorsHeaders(req.headers.get('origin'))
       }
     });
   } catch (err: any) {
@@ -60,17 +59,14 @@ export async function GET(req: NextRequest) {
       { error: 'Failed to fetch enquiries' }, 
       { 
         status: 500,
-        headers: {
-          "Access-Control-Allow-Origin": "https://www.ghausglobal.com",
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-          "Access-Control-Allow-Headers": "Content-Type, Authorization, Cache-Control, Pragma, Expires",
-        }
+        headers: getCorsHeaders(req.headers.get('origin'))
       }
     );
   }
 }
 
 export async function POST(req: NextRequest) {
+  const corsHeaders = getCorsHeaders(req.headers.get('origin'));
   try {
     const body = await req.json();
     const { name, email, phone, message, type, productName, subject, company, address, country } = body;
@@ -80,11 +76,7 @@ export async function POST(req: NextRequest) {
         { error: 'Missing required fields: name, email, and message are required.' }, 
         { 
           status: 400,
-          headers: {
-            "Access-Control-Allow-Origin": "https://www.ghausglobal.com",
-            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-            "Access-Control-Allow-Headers": "Content-Type, Authorization, Cache-Control, Pragma, Expires",
-          }
+          headers: corsHeaders
         }
       );
     }
@@ -128,9 +120,7 @@ export async function POST(req: NextRequest) {
         'Cache-Control': 'no-store, max-age=0, must-revalidate',
         'Pragma': 'no-cache',
         'Expires': '0',
-        "Access-Control-Allow-Origin": "https://www.ghausglobal.com",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization, Cache-Control, Pragma, Expires",
+        ...corsHeaders
       }
     });
 
@@ -140,23 +130,15 @@ export async function POST(req: NextRequest) {
       { error: 'Failed to process enquiry' }, 
       { 
         status: 500,
-        headers: {
-          "Access-Control-Allow-Origin": "https://www.ghausglobal.com",
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-          "Access-Control-Allow-Headers": "Content-Type, Authorization, Cache-Control, Pragma, Expires",
-        }
+        headers: corsHeaders
       }
     );
   }
 }
 
-export async function OPTIONS() {
+export async function OPTIONS(req: NextRequest) {
   return new NextResponse(null, {
     status: 200,
-    headers: {
-      "Access-Control-Allow-Origin": "https://www.ghausglobal.com",
-      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type, Authorization, Cache-Control, Pragma, Expires",
-    },
+    headers: getCorsHeaders(req.headers.get('origin')),
   });
 }

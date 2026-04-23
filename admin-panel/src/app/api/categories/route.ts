@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/db';
 import { uploadToS3 } from '@/lib/s3';
+import { getCorsHeaders } from '@/lib/cors';
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -42,9 +43,7 @@ export async function GET(req: NextRequest) {
           'Cache-Control': 'no-store, max-age=0, must-revalidate',
           'Pragma': 'no-cache',
           'Expires': '0',
-          "Access-Control-Allow-Origin": "https://www.ghausglobal.com",
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-          "Access-Control-Allow-Headers": "Content-Type, Authorization, Cache-Control, Pragma, Expires",
+          ...getCorsHeaders(req.headers.get('origin'))
         }
       });
     }
@@ -62,9 +61,7 @@ export async function GET(req: NextRequest) {
         'Cache-Control': 'no-store, max-age=0, must-revalidate',
         'Pragma': 'no-cache',
         'Expires': '0',
-        "Access-Control-Allow-Origin": "https://www.ghausglobal.com",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization, Cache-Control, Pragma, Expires",
+        ...getCorsHeaders(req.headers.get('origin'))
       }
     });
   } catch (err) {
@@ -73,11 +70,7 @@ export async function GET(req: NextRequest) {
       { error: 'Failed to fetch categories' }, 
       { 
         status: 500,
-        headers: {
-          "Access-Control-Allow-Origin": "https://www.ghausglobal.com",
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-          "Access-Control-Allow-Headers": "Content-Type, Authorization, Cache-Control, Pragma, Expires",
-        }
+        headers: getCorsHeaders(req.headers.get('origin'))
       }
     );
   }
@@ -123,11 +116,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(category, {
       status: 201,
-      headers: {
-        "Access-Control-Allow-Origin": "https://www.ghausglobal.com",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization, Cache-Control, Pragma, Expires",
-      }
+      headers: getCorsHeaders(req.headers.get('origin'))
     });
   } catch (error: any) {
     console.error('Category Creation Error:', error);
@@ -135,23 +124,15 @@ export async function POST(req: NextRequest) {
       { error: error.message || 'Failed to create category' }, 
       { 
         status: 500,
-        headers: {
-          "Access-Control-Allow-Origin": "https://www.ghausglobal.com",
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-          "Access-Control-Allow-Headers": "Content-Type, Authorization, Cache-Control, Pragma, Expires",
-        }
+        headers: getCorsHeaders(req.headers.get('origin'))
       }
     );
   }
 }
 
-export async function OPTIONS() {
+export async function OPTIONS(req: NextRequest) {
   return new NextResponse(null, {
     status: 200,
-    headers: {
-      "Access-Control-Allow-Origin": "https://www.ghausglobal.com",
-      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type, Authorization, Cache-Control, Pragma, Expires",
-    },
+    headers: getCorsHeaders(req.headers.get('origin')),
   });
 }

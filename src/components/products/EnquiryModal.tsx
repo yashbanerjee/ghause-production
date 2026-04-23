@@ -22,7 +22,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import api from "@/lib/api";
 import { Loader2 } from "lucide-react";
-import PhoneInput from 'react-phone-number-input';
+import PhoneInput, { isValidPhoneNumber, parsePhoneNumber } from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 
 interface EnquiryModalProps {
@@ -57,10 +57,19 @@ export const EnquiryModal = ({ isOpen, onClose, productName }: EnquiryModalProps
       return;
     }
 
+    if (formData.phone && !isValidPhoneNumber(formData.phone)) {
+      toast.error("Please enter a valid phone number.");
+      return;
+    }
+
     setIsSubmitting(true);
     try {
+      // Store the country code from the phone input if it exists
+      const phoneCountryCode = formData.phone ? parsePhoneNumber(formData.phone)?.country : null;
+      
       await api.post("/send-inquiry", {
         ...formData,
+        country: phoneCountryCode ? `${formData.country} (${phoneCountryCode})` : formData.country,
         productName,
         type: 'PRODUCT',
         message: formData.comment || `Enquiry for ${productName}`,
@@ -122,6 +131,11 @@ export const EnquiryModal = ({ isOpen, onClose, productName }: EnquiryModalProps
                 value={formData.phone}
                 onChange={(value) => setFormData({ ...formData, phone: value || '' })}
                 className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                numberInputProps={{
+                  className: "PhoneInputInput border-0 bg-transparent outline-none ring-0 shadow-none focus:border-0 focus:outline-none focus:ring-0 focus:shadow-none",
+                  style: { border: 'none', backgroundColor: 'transparent', boxShadow: 'none', outline: 'none' }
+                }}
+                limitMaxLength={true}
               />
             </div>
             <div className="grid gap-2">

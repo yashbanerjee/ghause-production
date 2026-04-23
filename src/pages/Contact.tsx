@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useForm, Controller } from "react-hook-form";
-import PhoneInput from 'react-phone-number-input';
+import PhoneInput, { isValidPhoneNumber, parsePhoneNumber } from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -22,7 +22,7 @@ const Contact = () => {
     fullName: z.string().min(2, t('contact.namePlaceholder') + " is required"),
     companyName: z.string().optional(),
     email: z.string().email("Invalid email address"),
-    phone: z.string().min(8, "Valid phone number is required"),
+    phone: z.string().refine(val => val ? isValidPhoneNumber(val) : false, "Valid phone number is required"),
     subject: z.string().min(3, "Subject is required"),
     message: z.string().min(10, "Message must be at least 10 characters"),
   });
@@ -78,6 +78,7 @@ const Contact = () => {
           phone: data.phone,
           company: data.companyName,
           subject: data.subject,
+          country: data.phone ? (parsePhoneNumber(data.phone)?.country || 'AE') : 'AE',
           type: 'CONTACT',
           source: `Contact Page`
         }),
@@ -175,6 +176,11 @@ const Contact = () => {
                           errors.phone ? "border-destructive focus-within:ring-destructive" : "",
                           isRtl && "text-right flex-row-reverse [&>.PhoneInputCountry]:ml-2 [&>.PhoneInputCountry]:mr-0"
                         )}
+                        numberInputProps={{
+                          className: "PhoneInputInput border-0 bg-transparent outline-none ring-0 shadow-none focus:border-0 focus:outline-none focus:ring-0 focus:shadow-none",
+                          style: { border: 'none', backgroundColor: 'transparent', boxShadow: 'none', outline: 'none' }
+                        }}
+                        limitMaxLength={true}
                       />
                     )}
                   />
