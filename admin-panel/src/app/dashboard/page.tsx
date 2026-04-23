@@ -11,12 +11,12 @@ export default function Dashboard() {
         const fetchStats = async () => {
             try {
                 const [cats, prods] = await Promise.all([
-                    api.get('/categories'),
-                    api.get('/products')
+                    api.get('/categories?limit=1'),
+                    api.get('/products?limit=1')
                 ]);
                 setStats({
-                    categories: cats.data.length,
-                    products: prods.data.length
+                    categories: cats.data.pagination?.total ?? (Array.isArray(cats.data) ? cats.data.length : 0),
+                    products: prods.data.pagination?.total ?? (Array.isArray(prods.data) ? prods.data.length : 0)
                 });
             } catch (err) {
                 console.error('Error fetching stats:', err);
