@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import logo from "@/assets/logo.png";
 import { useTranslation } from "react-i18next";
+import { getApiBaseUrl } from "@/lib/apiBase";
 
 const Footer = () => {
   const { t, i18n } = useTranslation();
@@ -26,7 +27,7 @@ const Footer = () => {
   useEffect(() => {
     const fetchFeatured = async () => {
       try {
-        const API_BASE = import.meta.env.VITE_API_URL || '/api';
+        const API_BASE = getApiBaseUrl();
         const response = await fetch(`${API_BASE}/products?isFeatured=true`);
         const data = await response.json();
         const products = Array.isArray(data) ? data : (data.data || []);
@@ -51,7 +52,7 @@ const Footer = () => {
     setLoading(true);
     setError(null);
 
-    const API_BASE = import.meta.env.VITE_API_URL || '/api';
+    const API_BASE = getApiBaseUrl();
 
     try {
       const response = await fetch(`${API_BASE}/send-inquiry?_t=${Date.now()}`, {

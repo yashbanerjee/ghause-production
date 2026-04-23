@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
+import { getApiBaseUrl } from "@/lib/apiBase";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { EnquiryModal } from "@/components/products/EnquiryModal";
@@ -27,7 +28,7 @@ const ProductDetail = () => {
   const navigate = useNavigate();
   const isRtl = i18n.language === 'ar';
   const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
-  const API_BASE = import.meta.env.VITE_API_URL || '/api';
+  const API_BASE = getApiBaseUrl();
 
   const { data: product, isLoading } = useQuery({
     queryKey: ['product', productId],

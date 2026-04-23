@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { cn } from "@/lib/utils";
 import { 
   Dialog, 
   DialogContent, 
@@ -88,17 +89,19 @@ export const EnquiryModal = ({ isOpen, onClose, productName }: EnquiryModalProps
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[500px] max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-primary uppercase">Send Enquiry</DialogTitle>
-          <DialogDescription>
-            Interested in <span className="font-semibold text-foreground">{productName}</span>? 
+      <DialogContent className="w-[min(100%,calc(100vw-1.5rem))] max-w-[min(640px,calc(100vw-1.5rem))] max-h-[min(90dvh,90vh)] overflow-y-auto overflow-x-hidden p-4 sm:p-6">
+        <DialogHeader className="min-w-0 shrink-0">
+          <DialogTitle className="text-xl font-bold text-primary uppercase sm:text-2xl">
+            Send Enquiry
+          </DialogTitle>
+          <DialogDescription className="text-pretty">
+            Interested in <span className="font-semibold text-foreground">{productName}</span>?{" "}
             Fill out the form below and our team will get back to you shortly.
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-4 py-4">
-          <div className="grid gap-2">
+        <form onSubmit={handleSubmit} className="min-w-0 space-y-4 py-2 sm:py-4">
+          <div className="grid min-w-0 gap-2">
             <Label htmlFor="name">Full Name *</Label>
             <Input 
               id="name" 
@@ -106,10 +109,11 @@ export const EnquiryModal = ({ isOpen, onClose, productName }: EnquiryModalProps
               required 
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              className="min-w-0"
             />
           </div>
 
-          <div className="grid gap-2">
+          <div className="grid min-w-0 gap-2">
             <Label htmlFor="email">Email Address *</Label>
             <Input 
               id="email" 
@@ -118,33 +122,41 @@ export const EnquiryModal = ({ isOpen, onClose, productName }: EnquiryModalProps
               required 
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              className="min-w-0"
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="grid gap-2">
+          {/* Full-width rows: side-by-side phone + country breaks PhoneInput below ~560px per column */}
+          <div className="grid min-w-0 grid-cols-1 gap-4">
+            <div className="grid min-w-0 gap-2">
               <Label htmlFor="phone">Phone Number</Label>
-              <PhoneInput
-                id="phone"
-                defaultCountry="AE"
-                placeholder="+971 50 000 0000"
-                value={formData.phone}
-                onChange={(value) => setFormData({ ...formData, phone: value || '' })}
-                className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                numberInputProps={{
-                  className: "PhoneInputInput border-0 bg-transparent outline-none ring-0 shadow-none focus:border-0 focus:outline-none focus:ring-0 focus:shadow-none",
-                  style: { border: 'none', backgroundColor: 'transparent', boxShadow: 'none', outline: 'none' }
-                }}
-                limitMaxLength={true}
-              />
+              <div className="min-w-0 w-full [&_.PhoneInput]:flex [&_.PhoneInput]:w-full [&_.PhoneInput]:min-w-0 [&_.PhoneInput]:items-center [&_.PhoneInput]:gap-1">
+                <PhoneInput
+                  id="phone"
+                  defaultCountry="AE"
+                  placeholder="+971 50 000 0000"
+                  value={formData.phone}
+                  onChange={(value) => setFormData({ ...formData, phone: value || '' })}
+                  className={cn(
+                    "flex h-10 w-full min-w-0 rounded-md border border-input bg-background px-2 py-1 text-base ring-offset-background",
+                    "placeholder:text-muted-foreground focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2",
+                    "disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                  )}
+                  numberInputProps={{
+                    className:
+                      "PhoneInputInput min-w-0 flex-1 border-0 bg-transparent py-0 shadow-none outline-none ring-0 focus:border-0 focus:outline-none focus:ring-0",
+                  }}
+                  limitMaxLength={true}
+                />
+              </div>
             </div>
-            <div className="grid gap-2">
+            <div className="grid min-w-0 gap-2">
               <Label htmlFor="country">Country *</Label>
               <Select 
                 value={formData.country} 
                 onValueChange={(val) => setFormData({ ...formData, country: val })}
               >
-                <SelectTrigger id="country">
+                <SelectTrigger id="country" className="w-full min-w-0">
                   <SelectValue placeholder="Select Country" />
                 </SelectTrigger>
                 <SelectContent>
@@ -157,17 +169,18 @@ export const EnquiryModal = ({ isOpen, onClose, productName }: EnquiryModalProps
             </div>
           </div>
 
-          <div className="grid gap-2">
+          <div className="grid min-w-0 gap-2">
             <Label htmlFor="address">Address / City</Label>
             <Input 
               id="address" 
               placeholder="Business Bay, Dubai" 
               value={formData.address}
               onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+              className="min-w-0"
             />
           </div>
 
-          <div className="grid gap-2">
+          <div className="grid min-w-0 gap-2">
             <Label htmlFor="comment">Comments</Label>
             <Textarea 
               id="comment" 
@@ -175,21 +188,23 @@ export const EnquiryModal = ({ isOpen, onClose, productName }: EnquiryModalProps
               rows={4}
               value={formData.comment}
               onChange={(e) => setFormData({ ...formData, comment: e.target.value })}
+              className="min-h-[100px] min-w-0 resize-y text-base sm:text-sm"
             />
           </div>
 
-          <DialogFooter className="pt-4">
+          <DialogFooter className="min-w-0 pt-4">
             <Button 
               type="button" 
               variant="outline" 
               onClick={onClose}
               disabled={isSubmitting}
+              className="w-full sm:w-auto"
             >
               Cancel
             </Button>
             <Button 
               type="submit" 
-              className="bg-primary hover:bg-primary/90 text-white min-w-[120px]"
+              className="w-full bg-primary text-white hover:bg-primary/90 sm:w-auto sm:min-w-[120px]"
               disabled={isSubmitting}
             >
               {isSubmitting ? (

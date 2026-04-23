@@ -13,6 +13,7 @@ import * as z from "zod";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "react-i18next";
+import { getApiBaseUrl } from "@/lib/apiBase";
 
 const Contact = () => {
   const { t, i18n } = useTranslation();
@@ -62,7 +63,7 @@ const Contact = () => {
     setError(null);
     setSuccess(false);
 
-    const API_BASE = import.meta.env.VITE_API_URL || '/api';
+    const API_BASE = getApiBaseUrl();
 
     try {
       const response = await fetch(`${API_BASE}/send-inquiry?_t=${Date.now()}`, {

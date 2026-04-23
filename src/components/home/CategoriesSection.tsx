@@ -4,11 +4,12 @@ import { Flame, Bell, CloudDrizzle, Settings, ShieldCheck, HelpCircle } from "lu
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
+import { getApiBaseUrl } from "@/lib/apiBase";
 
 const CategoriesSection = () => {
   const { t, i18n } = useTranslation();
   const isRtl = i18n.language.startsWith('ar');
-  const API_BASE = import.meta.env.VITE_API_URL || '/api';
+  const API_BASE = getApiBaseUrl();
 
   const { data: categories, isLoading } = useQuery({
     queryKey: ['categories'],
