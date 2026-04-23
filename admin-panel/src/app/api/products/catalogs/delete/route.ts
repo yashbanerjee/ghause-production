@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/db';
+import { getCorsHeaders } from '@/lib/cors';
 
 export async function DELETE(req: NextRequest) {
+  const origin = req.headers.get('origin');
   try {
     const { productId, fileUrl } = await req.json();
 
@@ -10,11 +12,7 @@ export async function DELETE(req: NextRequest) {
         { error: 'Missing productId or fileUrl' },
         {
           status: 400,
-          headers: {
-            "Access-Control-Allow-Origin": "https://www.ghausglobal.com",
-            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-            "Access-Control-Allow-Headers": "Content-Type, Authorization, Cache-Control, Pragma, Expires",
-          }
+          headers: getCorsHeaders(origin),
         }
       );
     }
@@ -30,17 +28,13 @@ export async function DELETE(req: NextRequest) {
         { error: 'Product not found' },
         {
           status: 404,
-          headers: {
-            "Access-Control-Allow-Origin": "https://www.ghausglobal.com",
-            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-            "Access-Control-Allow-Headers": "Content-Type, Authorization, Cache-Control, Pragma, Expires",
-          }
+          headers: getCorsHeaders(origin),
         }
       );
     }
 
     // Remove the specific fileUrl from the catalogs array
-    const updatedCatalogs = product.catalogs.filter(url => url !== fileUrl);
+    const updatedCatalogs = product.catalogs.filter((url: string) => url !== fileUrl);
 
     // Update the product record
     await prisma.product.update({
@@ -49,11 +43,7 @@ export async function DELETE(req: NextRequest) {
     });
 
     return NextResponse.json({ message: 'Catalog removed successfully' }, {
-      headers: {
-        "Access-Control-Allow-Origin": "https://www.ghausglobal.com",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization, Cache-Control, Pragma, Expires",
-      }
+      headers: getCorsHeaders(origin),
     });
 
   } catch (error: any) {
@@ -62,23 +52,15 @@ export async function DELETE(req: NextRequest) {
       { error: error.message || 'Failed to delete catalog' },
       {
         status: 500,
-        headers: {
-          "Access-Control-Allow-Origin": "https://www.ghausglobal.com",
-          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-          "Access-Control-Allow-Headers": "Content-Type, Authorization, Cache-Control, Pragma, Expires",
-        }
+        headers: getCorsHeaders(origin),
       }
     );
   }
 }
 
-export async function OPTIONS() {
+export async function OPTIONS(req: NextRequest) {
   return new NextResponse(null, {
     status: 200,
-    headers: {
-      "Access-Control-Allow-Origin": "https://www.ghausglobal.com",
-      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type, Authorization, Cache-Control, Pragma, Expires",
-    },
+    headers: getCorsHeaders(req.headers.get('origin')),
   });
 }

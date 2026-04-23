@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/db';
 import { uploadToS3 } from '@/lib/s3';
+import { getCorsHeaders } from '@/lib/cors';
 
 type Context = {
   params: Promise<{ id: string }>
@@ -9,14 +10,9 @@ type Context = {
 export async function GET(req: NextRequest, context: Context) {
   const resolvedParams = await context.params;
   const id = resolvedParams?.id;
-  const origin = req.headers.get('origin') || 'https://www.ghausglobal.com';
-  
-  const corsHeaders = {
-    "Access-Control-Allow-Origin": origin,
-    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type, Authorization, Cache-Control, Pragma, Expires",
-    "Access-Control-Allow-Credentials": "true",
-  };
+  const corsHeaders = getCorsHeaders(req.headers.get('origin'), {
+    credentials: true,
+  });
 
   if (!id) {
     return NextResponse.json({ error: 'Missing product ID' }, { status: 400, headers: corsHeaders });
@@ -51,14 +47,9 @@ export async function GET(req: NextRequest, context: Context) {
 export async function PUT(req: NextRequest, context: Context) {
   const resolvedParams = await context.params;
   const id = resolvedParams?.id;
-  const origin = req.headers.get('origin') || 'https://www.ghausglobal.com';
-
-  const corsHeaders = {
-    "Access-Control-Allow-Origin": origin,
-    "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type, Authorization, Cache-Control, Pragma, Expires",
-    "Access-Control-Allow-Credentials": "true",
-  };
+  const corsHeaders = getCorsHeaders(req.headers.get('origin'), {
+    credentials: true,
+  });
 
   if (!id) {
     return NextResponse.json({ error: 'Missing product ID' }, { status: 400, headers: corsHeaders });
@@ -126,37 +117,26 @@ export async function PUT(req: NextRequest, context: Context) {
 export async function DELETE(req: NextRequest, context: Context) {
   const resolvedParams = await context.params;
   const id = resolvedParams?.id;
+  const corsHeaders = getCorsHeaders(req.headers.get('origin'), {
+    credentials: true,
+  });
 
   try {
     await prisma.product.delete({ where: { id } });
     return NextResponse.json({ message: 'Product deleted' }, {
-      headers: {
-        "Access-Control-Allow-Origin": "https://www.ghausglobal.com",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization, Cache-Control, Pragma, Expires",
-      }
+      headers: corsHeaders,
     });
   } catch (err) {
     return NextResponse.json({ error: 'Failed to delete product' }, { 
       status: 500,
-      headers: {
-        "Access-Control-Allow-Origin": "https://www.ghausglobal.com",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization, Cache-Control, Pragma, Expires",
-      }
+      headers: corsHeaders,
     });
   }
 }
 
 export async function OPTIONS(req: NextRequest) {
-  const origin = req.headers.get('origin') || 'https://www.ghausglobal.com';
   return new NextResponse(null, {
     status: 200,
-    headers: {
-      "Access-Control-Allow-Origin": origin,
-      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type, Authorization, Cache-Control, Pragma, Expires",
-      "Access-Control-Allow-Credentials": "true",
-    },
+    headers: getCorsHeaders(req.headers.get('origin'), { credentials: true }),
   });
 }

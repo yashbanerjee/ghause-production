@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import prisma from '@/lib/db';
+import { getCorsHeaders } from '@/lib/cors';
 
 type Context = {
     params: Promise<{ slug: string[] }>
@@ -19,15 +19,18 @@ const handle = async (req: NextRequest, resolvedParams: { slug: string[] }) => {
         slug: slug.join('/')
     }, {
         status: 404,
-        headers: {
-            "Access-Control-Allow-Origin": "https://www.ghausglobal.com",
-            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-            "Access-Control-Allow-Headers": "Content-Type, Authorization, Cache-Control, Pragma, Expires",
-        }
+        headers: getCorsHeaders(req.headers.get('origin')),
     });
 };
 
 export async function GET(req: NextRequest, context: Context) {
     const resolvedParams = await context.params;
     return handle(req, resolvedParams);
+}
+
+export async function OPTIONS(req: NextRequest) {
+  return new NextResponse(null, {
+    status: 200,
+    headers: getCorsHeaders(req.headers.get('origin')),
+  });
 }
