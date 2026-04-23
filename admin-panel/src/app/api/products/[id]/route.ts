@@ -69,12 +69,15 @@ export async function PUT(req: NextRequest, context: Context) {
       'descriptionFr',
       'categoryId',
       'isFeatured',
+      'index',
     ];
     fields.forEach(field => {
       const value = formData.get(field);
       if (value !== null) {
         if (field === 'isFeatured') {
           updateData[field] = value === 'true';
+        } else if (field === 'index') {
+          updateData[field] = value && (value as string).trim() ? parseInt(value as string) : null;
         } else if (
           (field === 'nameFr' || field === 'descriptionFr') &&
           typeof value === 'string' &&

@@ -23,7 +23,10 @@ export async function GET(req: NextRequest) {
       prisma.product.findMany({
         where,
         include: { category: true },
-        orderBy: { createdAt: 'desc' },
+        orderBy: [
+          { index: 'asc' },
+          { createdAt: 'desc' }
+        ],
         skip: isAdmin ? skip : undefined,
         take: isAdmin ? limit : undefined,
       }),
@@ -103,6 +106,9 @@ export async function POST(req: NextRequest) {
       }
     }
 
+    const indexRaw = formData.get('index') as string | null;
+    const index = indexRaw && indexRaw.trim() ? parseInt(indexRaw) : null;
+
     const productData: any = {
       nameEn,
       nameAr,
@@ -113,6 +119,7 @@ export async function POST(req: NextRequest) {
       categoryId,
       image: imageUrl || null,
       catalogs: catalogUrls,
+      index,
       isActive: true,
       isFeatured: formData.get('isFeatured') === 'true'
     };

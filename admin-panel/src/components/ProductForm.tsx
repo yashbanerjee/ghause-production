@@ -29,6 +29,7 @@ export default function ProductForm({ editId, initialData, onSuccess }: ProductF
         descriptionFr: '',
         categoryId: '',
         isFeatured: false,
+        index: '',
     });
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [catalogFiles, setCatalogFiles] = useState<FileList | null>(null);
@@ -57,6 +58,7 @@ export default function ProductForm({ editId, initialData, onSuccess }: ProductF
                 descriptionFr: initialData.descriptionFr || '',
                 categoryId: initialData.categoryId || '',
                 isFeatured: initialData.isFeatured || false,
+                index: initialData.index?.toString() || '',
             });
         }
     }, [initialData]);
@@ -139,6 +141,18 @@ export default function ProductForm({ editId, initialData, onSuccess }: ProductF
                         <option key={cat.id} value={cat.id}>{cat.nameEn}</option>
                     ))}
                 </select>
+            </div>
+
+            <div>
+                <label className="block text-sm font-semibold text-gray-700">Display Index (Sort order)</label>
+                <input
+                    type="number"
+                    value={formData.index}
+                    onChange={(e) => setFormData({ ...formData, index: e.target.value })}
+                    placeholder="Optional (e.g. 1, 2, 3...)"
+                    className="mt-1 block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 shadow-sm transition focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+                />
+                <p className="mt-1 text-[10px] text-gray-400 font-medium italic">Lower numbers come first. Products without an index appear after indexed ones (latest first).</p>
             </div>
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">

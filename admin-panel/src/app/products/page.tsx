@@ -21,6 +21,7 @@ interface Product {
     catalogs: string[];
     isActive: boolean;
     isFeatured: boolean;
+    index?: number | null;
 }
 
 interface PaginationData {
@@ -153,6 +154,7 @@ export default function ProductsPage() {
                         <thead className="bg-gray-50 border-b border-gray-200">
                             <tr>
                                 <th className="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-500">Image</th>
+                                <th className="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-500">Index</th>
                                 <th className="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-500">Name (EN)</th>
                                 <th className="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-500">Category</th>
                                 <th className="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-500">Featured</th>
@@ -186,6 +188,9 @@ export default function ProductsPage() {
                                             ) : (
                                                 <div className="h-10 w-10 bg-gray-50 rounded-lg flex items-center justify-center border border-gray-100"><ImageIcon className="h-5 w-5 text-gray-300" /></div>
                                             )}
+                                        </td>
+                                        <td className="whitespace-nowrap px-6 py-4 text-sm font-bold text-indigo-600">
+                                            {prod.index ?? '-'}
                                         </td>
                                         <td className="px-6 py-4">
                                             <div className="text-sm font-bold text-gray-900">{prod.nameEn}</div>

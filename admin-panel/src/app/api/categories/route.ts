@@ -29,7 +29,13 @@ export async function GET(req: NextRequest) {
       prisma.category.findMany({
         where,
         include: { 
-          products: isAdmin ? true : { where: { isActive: true } } 
+          products: {
+            where: isAdmin ? undefined : { isActive: true },
+            orderBy: [
+              { index: 'asc' },
+              { createdAt: 'desc' }
+            ]
+          }
         },
         orderBy: { createdAt: 'asc' },
         skip: (isAdmin && !getAll) ? skip : undefined,
