@@ -71,7 +71,7 @@ const PrivacyPolicy = () => {
               <div className="mt-4 p-4 rounded-xl bg-muted/50 border border-border">
                 <p className="font-bold text-foreground">GHAUS CORP</p>
                 <p className="text-sm text-muted-foreground">Dubai, United Arab Emirates</p>
-                <p className="text-sm text-muted-foreground">Email: info@ghauscorp.com</p>
+                <p className="text-sm text-muted-foreground">Email: info@ghausglobal.com </p>
               </div>
             </section>
           </div>

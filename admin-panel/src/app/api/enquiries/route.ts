@@ -116,7 +116,7 @@ export async function POST(req: NextRequest) {
         type: type || 'PRODUCT',
         productName: productName || null
       });
-      console.log(`[Enquiry API] Email notification sent successfully to info@ghauscorp.com`);
+      console.log(`[Enquiry API] Email notification sent successfully to info@ghausglobal.com `);
     } catch (emailError) {
       console.error(`[Enquiry API] Failed to send email notification:`, emailError);
       // We don't return 500 here because the enquiry was saved successfully in the DB.

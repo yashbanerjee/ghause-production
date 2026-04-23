@@ -24,7 +24,7 @@ export async function sendEnquiryEmail(data: EnquiryEmailData) {
 
   const mailOptions = {
     from: `"${process.env.SMTP_FROM_NAME || 'Ghaus Website'}" <${process.env.SMTP_FROM_EMAIL || process.env.SMTP_USER}>`,
-    to: 'info@ghauscorp.com',
+    to: 'info@ghausglobal.com ',
     subject: `New Enquiry Received: [${type}] ${productName || 'General'}`,
     html: `
       <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;">

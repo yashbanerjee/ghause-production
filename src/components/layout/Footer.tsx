@@ -104,14 +104,14 @@ const Footer = () => {
               {t('footer.description')}
             </p>
             <div className="space-y-3 text-sm">
-              <a href="tel:+971508638007" className={cn("flex items-center gap-2 opacity-70 hover:opacity-100 transition-opacity", isRtl && "flex-row-reverse")}>
-                <Phone className="w-4 h-4 text-primary" /> <span dir="ltr">+971 50 863 8007</span>
+              <a href="tel: +971585684750 " className={cn("flex items-center gap-2 opacity-70 hover:opacity-100 transition-opacity", isRtl && "flex-row-reverse")}>
+                <Phone className="w-4 h-4 text-primary" /> <span dir="ltr">+971 58 568 4750</span>
               </a>
               <a href="tel:+16473838693" className={cn("flex items-center gap-2 opacity-70 hover:opacity-100 transition-opacity", isRtl && "flex-row-reverse")}>
                 <Phone className="w-4 h-4 text-primary" /> <span dir="ltr">+1 647 383 8693 (For Canada Only)</span>
               </a>
-              <a href="mailto:info@ghauscorp.com" className={cn("flex items-center gap-2 opacity-70 hover:opacity-100 transition-opacity", isRtl && "flex-row-reverse")}>
-                <Mail className="w-4 h-4 text-primary" /> <span>info@ghauscorp.com</span>
+              <a href="mailto:info@ghausglobal.com " className={cn("flex items-center gap-2 opacity-70 hover:opacity-100 transition-opacity", isRtl && "flex-row-reverse")}>
+                <Mail className="w-4 h-4 text-primary" /> <span>info@ghausglobal.com </span>
               </a>
               <div className={cn("flex items-start gap-2 opacity-70", isRtl && "flex-row-reverse")}>
                 <MapPin className="w-4 h-4 text-primary mt-0.5" />

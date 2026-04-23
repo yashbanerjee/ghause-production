@@ -43,18 +43,18 @@ const Header = () => {
         <div className={cn("container flex items-center justify-between py-2 text-[11px] md:text-xs", isRtl && "flex-row-reverse")}>
           <div className="flex items-center gap-4 md:gap-6">
             <a
-              href="tel:+971508638007"
+              href="tel: +971585684750 "
               className={cn("flex items-center gap-2 px-2 py-1 rounded-full bg-white/5 hover:bg-primary/20 hover:text-primary transition-all duration-300 border border-white/5 hover:border-primary/30 group", isRtl && "flex-row-reverse")}
             >
               <Phone className="w-3 h-3 text-primary group-hover:scale-110 transition-transform" />
-              <span className="font-medium" dir="ltr">+971 50 863 8007</span>
+              <span className="font-medium" dir="ltr">+971 58 568 4750</span>
             </a>
             <a
-              href="mailto:info@ghauscorp.com"
+              href="mailto:info@ghausglobal.com "
               className={cn("flex items-center gap-2 px-2 py-1 rounded-full bg-white/5 hover:bg-primary/20 hover:text-primary transition-all duration-300 border border-white/5 hover:border-primary/30 group", isRtl && "flex-row-reverse")}
             >
               <Mail className="w-3 h-3 text-primary group-hover:scale-110 transition-transform" />
-              <span className="font-medium">info@ghauscorp.com</span>
+              <span className="font-medium">info@ghausglobal.com </span>
             </a>
           </div>
           <div className="flex items-center gap-4">
@@ -91,7 +91,7 @@ const Header = () => {
           <Link to="/" className="flex items-center gap-2.5">
             <img src={logo} alt="GHAUS CORP" className="h-[73px] w-auto object-contain" />
             <div className="leading-tight">
-              <span className="font-display text-xl text-foreground tracking-wide">GHAUS CORP</span>
+              <span className="font-display text-xl text-foreground tracking-wide">GHaus Global</span>
               <span className="block text-[10px] font-medium text-muted-foreground tracking-[0.2em] uppercase">{t('home.hero.tagline').split('—')[1]?.trim() || 'Fire & Safety Solutions'}</span>
             </div>
           </Link>
