@@ -5,7 +5,9 @@ import { Mail, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { toast } from "sonner";
@@ -44,6 +46,7 @@ const Contact = () => {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors },
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
@@ -159,7 +162,22 @@ const Contact = () => {
                   {errors.email && <span className="text-[10px] text-destructive mt-1">{errors.email.message}</span>}
                 </div>
                 <div>
-                  <Input {...register("phone")} type="tel" placeholder={t('contact.phone')} className={cn(errors.phone ? "border-destructive" : "", isRtl && "text-right")} />
+                  <Controller
+                    name="phone"
+                    control={control}
+                    render={({ field }) => (
+                      <PhoneInput
+                        {...field}
+                        defaultCountry="AE"
+                        placeholder={t('contact.phone')}
+                        className={cn(
+                          "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background placeholder:text-muted-foreground focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+                          errors.phone ? "border-destructive focus-within:ring-destructive" : "",
+                          isRtl && "text-right flex-row-reverse [&>.PhoneInputCountry]:ml-2 [&>.PhoneInputCountry]:mr-0"
+                        )}
+                      />
+                    )}
+                  />
                   {errors.phone && <span className="text-[10px] text-destructive mt-1">{errors.phone.message}</span>}
                 </div>
               </div>

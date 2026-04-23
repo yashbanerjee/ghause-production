@@ -105,6 +105,10 @@
   h6 {
     @apply font-display tracking-tight;
   }
+
+  .PhoneInputInput {
+    @apply flex-1 bg-transparent border-none outline-none focus-visible:outline-none focus:ring-0 ml-2 text-sm text-foreground placeholder:text-muted-foreground;
+  }
 }
 
 @layer utilities {
