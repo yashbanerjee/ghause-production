@@ -17,13 +17,16 @@ model Category {
   id                       String    @id
   nameEn                   String
   nameAr                   String
+  nameFr                   String?
   icon                     String?
   image                    String?
   createdAt                DateTime  @default(now())
   homeDescriptionAr        String?
   homeDescriptionEn        String?
+  homeDescriptionFr        String?
   productPageDescriptionAr String?
   productPageDescriptionEn String?
+  productPageDescriptionFr String?
   isActive                 Boolean   @default(true)
   Product                  Product[]
 }
@@ -48,8 +51,10 @@ model Product {
   id            String   @id
   nameEn        String
   nameAr        String
+  nameFr        String?
   descriptionEn String
   descriptionAr String
+  descriptionFr String?
   image         String?
   categoryId    String
   createdAt     DateTime @default(now())

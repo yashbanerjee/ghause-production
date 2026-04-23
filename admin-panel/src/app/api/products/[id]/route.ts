@@ -60,12 +60,27 @@ export async function PUT(req: NextRequest, context: Context) {
     const updateData: any = {};
 
     // Extract text fields
-    const fields = ['nameEn', 'nameAr', 'descriptionEn', 'descriptionAr', 'categoryId', 'isFeatured'];
+    const fields = [
+      'nameEn',
+      'nameAr',
+      'nameFr',
+      'descriptionEn',
+      'descriptionAr',
+      'descriptionFr',
+      'categoryId',
+      'isFeatured',
+    ];
     fields.forEach(field => {
       const value = formData.get(field);
       if (value !== null) {
         if (field === 'isFeatured') {
           updateData[field] = value === 'true';
+        } else if (
+          (field === 'nameFr' || field === 'descriptionFr') &&
+          typeof value === 'string' &&
+          !value.trim()
+        ) {
+          updateData[field] = null;
         } else {
           updateData[field] = value as string;
         }

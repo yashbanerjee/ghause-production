@@ -21,7 +21,14 @@ export default function ProductForm({ editId, initialData, onSuccess }: ProductF
     const router = useRouter();
     const [categories, setCategories] = useState<Category[]>([]);
     const [formData, setFormData] = useState({
-        nameEn: '', nameAr: '', descriptionEn: '', descriptionAr: '', categoryId: '', isFeatured: false
+        nameEn: '',
+        nameAr: '',
+        nameFr: '',
+        descriptionEn: '',
+        descriptionAr: '',
+        descriptionFr: '',
+        categoryId: '',
+        isFeatured: false,
     });
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [catalogFiles, setCatalogFiles] = useState<FileList | null>(null);
@@ -44,10 +51,12 @@ export default function ProductForm({ editId, initialData, onSuccess }: ProductF
             setFormData({
                 nameEn: initialData.nameEn || '',
                 nameAr: initialData.nameAr || '',
+                nameFr: initialData.nameFr || '',
                 descriptionEn: initialData.descriptionEn || '',
                 descriptionAr: initialData.descriptionAr || '',
+                descriptionFr: initialData.descriptionFr || '',
                 categoryId: initialData.categoryId || '',
-                isFeatured: initialData.isFeatured || false
+                isFeatured: initialData.isFeatured || false,
             });
         }
     }, [initialData]);
@@ -85,7 +94,7 @@ export default function ProductForm({ editId, initialData, onSuccess }: ProductF
 
     return (
         <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
                 <div>
                     <label className="block text-sm font-semibold text-gray-700">Name (English)</label>
                     <input
@@ -106,6 +115,15 @@ export default function ProductForm({ editId, initialData, onSuccess }: ProductF
                         className="mt-1 block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 shadow-sm transition focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
                     />
                 </div>
+                <div>
+                    <label className="block text-sm font-semibold text-gray-700">Name (French)</label>
+                    <input
+                        type="text"
+                        value={formData.nameFr}
+                        onChange={(e) => setFormData({ ...formData, nameFr: e.target.value })}
+                        className="mt-1 block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 shadow-sm transition focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+                    />
+                </div>
             </div>
 
             <div>
@@ -123,7 +141,7 @@ export default function ProductForm({ editId, initialData, onSuccess }: ProductF
                 </select>
             </div>
 
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
                 <div>
                     <label className="block text-sm font-semibold text-gray-700">Description (English)</label>
                     <textarea
@@ -139,6 +157,15 @@ export default function ProductForm({ editId, initialData, onSuccess }: ProductF
                         rows={3}
                         value={formData.descriptionAr}
                         onChange={(e) => setFormData({ ...formData, descriptionAr: e.target.value })}
+                        className="mt-1 block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 shadow-sm transition focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+                    />
+                </div>
+                <div>
+                    <label className="block text-sm font-semibold text-gray-700">Description (French)</label>
+                    <textarea
+                        rows={3}
+                        value={formData.descriptionFr}
+                        onChange={(e) => setFormData({ ...formData, descriptionFr: e.target.value })}
                         className="mt-1 block w-full rounded-lg border border-gray-300 p-2.5 text-gray-900 shadow-sm transition focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
                     />
                 </div>

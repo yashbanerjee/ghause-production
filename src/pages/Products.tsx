@@ -7,15 +7,23 @@ import { cn } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
 import { getApiBaseUrl } from "@/lib/apiBase";
+import {
+  localizedCategoryName,
+  localizedCategoryProductPageDesc,
+  localizedProductDescription,
+  localizedProductName,
+} from "@/lib/localeContent";
 
 interface Category {
   id: string;
   nameEn: string;
   nameAr: string;
+  nameFr?: string | null;
   image: string;
   icon: string;
   productPageDescriptionEn?: string;
   productPageDescriptionAr?: string;
+  productPageDescriptionFr?: string | null;
   products?: Product[];
 }
 
@@ -23,8 +31,10 @@ interface Product {
   id: string;
   nameEn: string;
   nameAr: string;
+  nameFr?: string | null;
   descriptionEn: string;
   descriptionAr: string;
+  descriptionFr?: string | null;
   image: string;
   catalogs: string[];
 }
@@ -32,7 +42,7 @@ interface Product {
 const Products = () => {
   const { t, i18n } = useTranslation();
   const { category: categoryId } = useParams();
-  const isRtl = i18n.language === 'ar';
+  const isRtl = i18n.language.startsWith("ar");
   const API_BASE = getApiBaseUrl();
 
   const { data: categories, isLoading: catsLoading } = useQuery({
@@ -85,10 +95,16 @@ const Products = () => {
               <nav className="flex mb-4 text-sm font-medium">
                 <Link to="/products" className="text-primary hover:underline">{t('products.title')}</Link>
                 <span className="mx-2">/</span>
-                <span className="text-secondary-foreground/70">{isRtl ? currentCategory?.nameAr : currentCategory?.nameEn}</span>
+                <span className="text-secondary-foreground/70">
+                  {currentCategory
+                    ? localizedCategoryName(currentCategory, i18n.language)
+                    : ""}
+                </span>
               </nav>
               <h1 className="text-5xl lg:text-6xl font-display mt-3 mb-6 uppercase">
-                {isRtl ? currentCategory?.nameAr : currentCategory?.nameEn}
+                {currentCategory
+                  ? localizedCategoryName(currentCategory, i18n.language)
+                  : ""}
               </h1>
             </motion.div>
           </div>
@@ -120,16 +136,20 @@ const Products = () => {
                     </Link>
                     <div className={cn("p-6 flex-grow flex flex-col", isRtl && "text-right")}>
                       <Link to={`/product/${prod.id}`} className="group/title">
-                        <h3 className="text-xl font-bold mb-2 group-hover/title:text-primary transition-colors leading-tight">{isRtl ? prod.nameAr : prod.nameEn}</h3>
+                        <h3 className="text-xl font-bold mb-2 group-hover/title:text-primary transition-colors leading-tight">
+                          {localizedProductName(prod, i18n.language)}
+                        </h3>
                       </Link>
                       <p className="text-muted-foreground text-sm mb-6 line-clamp-3 leading-relaxed">
-                        {isRtl ? prod.descriptionAr : prod.descriptionEn}
+                        {localizedProductDescription(prod, i18n.language)}
                       </p>
 
                       <div className="mt-auto space-y-4">
                         {prod.catalogs.length > 0 && (
                           <div className="space-y-2">
-                            <p className="text-[10px] font-bold uppercase text-muted-foreground tracking-widest">{t('products.catalogs') || 'Technical Catalogs'}</p>
+                            <p className="text-[10px] font-bold uppercase text-muted-foreground tracking-widest">
+                              {t("products.catalogs")}
+                            </p>
                             <div className="grid gap-2">
                               {prod.catalogs.slice(0, 2).map((url, idx) => (
                                 <a
@@ -144,7 +164,11 @@ const Products = () => {
                                 </a>
                               ))}
                               {prod.catalogs.length > 2 && (
-                                <p className="text-[10px] text-muted-foreground italic px-1">+{prod.catalogs.length - 2} more catalogs</p>
+                                <p className="text-[10px] text-muted-foreground italic px-1">
+                                  {t("products.moreCatalogs", {
+                                    count: prod.catalogs.length - 2,
+                                  })}
+                                </p>
                               )}
                             </div>
                           </div>
@@ -154,7 +178,7 @@ const Products = () => {
                           to={`/product/${prod.id}`}
                           className="flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-widest hover:gap-3 transition-all mt-4 group/more"
                         >
-                          View Details
+                          {t("products.viewDetails")}
                           <ChevronRight size={14} className={cn("transition-transform", isRtl ? "rotate-180 group-hover/more:-translate-x-1" : "group-hover/more:translate-x-1")} />
                         </Link>
                       </div>
@@ -221,13 +245,11 @@ const Products = () => {
                   </div>
                   <div className={i % 2 === 1 ? "md:order-1" : ""}>
                     <h3 className="font-display text-3xl text-foreground mb-3">
-                      {isRtl ? cat.nameAr : cat.nameEn}
+                      {localizedCategoryName(cat, i18n.language)}
                     </h3>
                     <p className="text-muted-foreground mb-6 leading-relaxed">
-                      {isRtl
-                        ? (cat.productPageDescriptionAr || t(`products.categories.${cat.nameEn.toLowerCase()}.desc`))
-                        : (cat.productPageDescriptionEn || t(`products.categories.${cat.nameEn.toLowerCase()}.desc`))
-                      }
+                      {localizedCategoryProductPageDesc(cat, i18n.language) ||
+                        t(`products.categories.${cat.nameEn.toLowerCase()}.desc`)}
                     </p>
                     
                     {cat.products && cat.products.length > 0 && (
@@ -238,7 +260,7 @@ const Products = () => {
                             to={`/product/${prod.id}`}
                             className="text-[10px] uppercase font-bold tracking-widest px-3 py-1.5 rounded-full bg-muted/80 text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all border border-border/50 shadow-sm"
                           >
-                            {isRtl ? prod.nameAr : prod.nameEn}
+                            {localizedProductName(prod, i18n.language)}
                           </Link>
                         ))}
                       </div>

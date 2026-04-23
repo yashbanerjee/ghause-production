@@ -7,6 +7,11 @@ import { cn } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
 import { getApiBaseUrl } from "@/lib/apiBase";
+import {
+  localizedProductDescription,
+  localizedProductName,
+  localizedCategoryName,
+} from "@/lib/localeContent";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { EnquiryModal } from "@/components/products/EnquiryModal";
@@ -15,18 +20,25 @@ interface Product {
   id: string;
   nameEn: string;
   nameAr: string;
+  nameFr?: string | null;
   descriptionEn: string;
   descriptionAr: string;
+  descriptionFr?: string | null;
   image: string;
   catalogs: string[];
-  category: { id: string; nameEn: string; nameAr: string };
+  category: {
+    id: string;
+    nameEn: string;
+    nameAr: string;
+    nameFr?: string | null;
+  };
 }
 
 const ProductDetail = () => {
   const { t, i18n } = useTranslation();
   const { productId } = useParams();
   const navigate = useNavigate();
-  const isRtl = i18n.language === 'ar';
+  const isRtl = i18n.language.startsWith("ar");
   const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
   const API_BASE = getApiBaseUrl();
 
@@ -94,11 +106,13 @@ const ProductDetail = () => {
               <Link to="/products" className="hover:text-primary transition-colors">Products</Link>
               <ChevronRight size={14} className={cn(isRtl && "rotate-180")} />
               <Link to={`/products/${product?.category?.id}`} className="hover:text-primary transition-colors">
-                {isRtl ? product?.category?.nameAr : product?.category?.nameEn}
+                {product?.category
+                  ? localizedCategoryName(product.category, i18n.language)
+                  : ""}
               </Link>
               <ChevronRight size={14} className={cn(isRtl && "rotate-180")} />
               <span className="text-foreground font-semibold truncate max-w-[200px]">
-                {isRtl ? product?.nameAr : product?.nameEn}
+                {product ? localizedProductName(product, i18n.language) : ""}
               </span>
             </nav>
 
@@ -114,7 +128,7 @@ const ProductDetail = () => {
                   {product?.image ? (
                     <img 
                       src={product.image.startsWith('http') ? product.image : `${API_BASE}/uploads/${product.image}`} 
-                      alt={product?.nameEn} 
+                      alt={product ? localizedProductName(product, i18n.language) : ""} 
                       className="max-w-full max-h-full object-contain transition-transform duration-700 group-hover:scale-110" 
                     />
                   ) : (
@@ -139,7 +153,9 @@ const ProductDetail = () => {
                           <FileText size={24} />
                         </div>
                         <div className="min-w-0 pr-4">
-                          <p className="text-sm font-bold text-muted-foreground uppercase tracking-tight">Download Data Sheet</p>
+                          <p className="text-sm font-bold text-muted-foreground uppercase tracking-tight">
+                            {t("products.downloadDataSheet")}
+                          </p>
                         </div>
                         <Download size={18} className="text-primary opacity-40 group-hover:opacity-100 transition-opacity ml-auto" />
                       </a>
@@ -156,7 +172,8 @@ const ProductDetail = () => {
                              rel="noopener noreferrer"
                              className="text-xs font-medium text-primary hover:underline flex items-center gap-2"
                            >
-                             <FileText size={12} /> Alternative Data Sheet {idx + 1}
+                             <FileText size={12} />{" "}
+                             {t("products.alternativeDataSheet", { n: idx + 1 })}
                            </a>
                         ))}
                        </div>
@@ -169,17 +186,19 @@ const ProductDetail = () => {
               <div className="lg:col-span-7 flex flex-col pt-2">
                 <div className="mb-8 border-b border-border pb-6">
                   <h1 className="text-3xl md:text-4xl lg:text-5xl font-display text-[#a91d1d] leading-tight mb-4 uppercase tracking-tighter">
-                    {isRtl ? product?.nameAr : product?.nameEn}
+                    {product ? localizedProductName(product, i18n.language) : ""}
                   </h1>
                 </div>
 
                 <div className="mb-10">
                   <h2 className="text-2xl font-semibold text-muted-foreground mb-6 inline-block border-b-2 border-red-200 pr-8 pb-1">
-                    Description
+                    {t("products.description")}
                   </h2>
                   <div className="prose prose-slate max-w-none prose-lg">
                     <p className="text-lg text-slate-700 whitespace-pre-wrap leading-relaxed font-medium">
-                      {isRtl ? product?.descriptionAr : product?.descriptionEn}
+                      {product
+                        ? localizedProductDescription(product, i18n.language)
+                        : ""}
                     </p>
                   </div>
                 </div>
@@ -190,8 +209,16 @@ const ProductDetail = () => {
                     onClick={() => setIsEnquiryOpen(true)}
                     className="h-16 px-12 bg-[#a91d1d] hover:bg-[#8e1818] text-white text-lg font-bold uppercase tracking-widest rounded-xl transition-all shadow-lg hover:shadow-red-200 hover:-translate-y-1 active:translate-y-0 group"
                   >
-                    Send Enquiry
-                    <Send className="ml-3 group-hover:translate-x-2 group-hover:-translate-y-1 transition-transform" size={20} />
+                    {t("products.sendEnquiry")}
+                    <Send
+                      className={cn(
+                        "ms-3 group-hover:-translate-y-1 transition-transform",
+                        isRtl
+                          ? "group-hover:-translate-x-2"
+                          : "group-hover:translate-x-2"
+                      )}
+                      size={20}
+                    />
                   </Button>
                 </div>
               </div>
@@ -204,7 +231,9 @@ const ProductDetail = () => {
       <EnquiryModal 
         isOpen={isEnquiryOpen} 
         onClose={() => setIsEnquiryOpen(false)} 
-        productName={isRtl ? product?.nameAr || '' : product?.nameEn || ''} 
+        productName={
+          product ? localizedProductName(product, i18n.language) : ""
+        } 
       />
     </Layout>
   );

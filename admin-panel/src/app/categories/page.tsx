@@ -9,10 +9,13 @@ interface Category {
     id: string;
     nameEn: string;
     nameAr: string;
+    nameFr: string | null;
     homeDescriptionEn: string | null;
     homeDescriptionAr: string | null;
+    homeDescriptionFr: string | null;
     productPageDescriptionEn: string | null;
     productPageDescriptionAr: string | null;
+    productPageDescriptionFr: string | null;
     icon: string | null;
     image: string | null;
     isActive: boolean;
@@ -33,10 +36,13 @@ export default function CategoriesPage() {
     const [formData, setFormData] = useState({ 
         nameEn: '', 
         nameAr: '',
+        nameFr: '',
         homeDescriptionEn: '',
         homeDescriptionAr: '',
+        homeDescriptionFr: '',
         productPageDescriptionEn: '',
-        productPageDescriptionAr: ''
+        productPageDescriptionAr: '',
+        productPageDescriptionFr: '',
     });
     const [iconFile, setIconFile] = useState<File | null>(null);
     const [imageFile, setImageFile] = useState<File | null>(null);
@@ -73,10 +79,13 @@ export default function CategoriesPage() {
         setFormData({ 
             nameEn: '', 
             nameAr: '',
+            nameFr: '',
             homeDescriptionEn: '',
             homeDescriptionAr: '',
+            homeDescriptionFr: '',
             productPageDescriptionEn: '',
-            productPageDescriptionAr: ''
+            productPageDescriptionAr: '',
+            productPageDescriptionFr: '',
         });
         setIconFile(null);
         setImageFile(null);
@@ -88,10 +97,13 @@ export default function CategoriesPage() {
         setFormData({ 
             nameEn: cat.nameEn, 
             nameAr: cat.nameAr,
+            nameFr: cat.nameFr || '',
             homeDescriptionEn: cat.homeDescriptionEn || '',
             homeDescriptionAr: cat.homeDescriptionAr || '',
+            homeDescriptionFr: cat.homeDescriptionFr || '',
             productPageDescriptionEn: cat.productPageDescriptionEn || '',
-            productPageDescriptionAr: cat.productPageDescriptionAr || ''
+            productPageDescriptionAr: cat.productPageDescriptionAr || '',
+            productPageDescriptionFr: cat.productPageDescriptionFr || '',
         });
         setShowModal(true);
     };
@@ -179,13 +191,14 @@ export default function CategoriesPage() {
                                 <th className="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-500">Icon</th>
                                 <th className="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-500">Name (EN)</th>
                                 <th className="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-500">Name (AR)</th>
+                                <th className="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-gray-500">Name (FR)</th>
                                 <th className="px-6 py-4 text-right text-xs font-bold uppercase tracking-wider text-gray-500">Actions</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200 bg-white">
                             {fetching ? (
                                 <tr>
-                                    <td colSpan={4} className="px-6 py-20 text-center">
+                                    <td colSpan={5} className="px-6 py-20 text-center">
                                         <div className="flex justify-center">
                                             <div className="h-8 w-8 animate-spin rounded-full border-4 border-indigo-600 border-t-transparent"></div>
                                         </div>
@@ -193,7 +206,7 @@ export default function CategoriesPage() {
                                 </tr>
                             ) : (categories?.length || 0) === 0 ? (
                                 <tr>
-                                    <td colSpan={4} className="px-6 py-20 text-center text-gray-400">
+                                    <td colSpan={5} className="px-6 py-20 text-center text-gray-400">
                                         No categories found.
                                     </td>
                                 </tr>
@@ -213,6 +226,7 @@ export default function CategoriesPage() {
                                         </td>
                                         <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-900 font-semibold">{cat.nameEn}</td>
                                         <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-900 font-semibold">{cat.nameAr}</td>
+                                        <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-600">{cat.nameFr || '—'}</td>
                                         <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
                                             <div className="flex items-center justify-end gap-3">
                                                 <button 
@@ -289,7 +303,7 @@ export default function CategoriesPage() {
                             <button onClick={() => setShowModal(false)} className="text-gray-400 hover:text-gray-600 p-2 hover:bg-gray-100 rounded-full transition-all"><X className="h-6 w-6" /></button>
                         </div>
                         <form onSubmit={handleSubmit} className="space-y-6">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                 <div className="text-left">
                                     <label className="block text-sm font-medium text-gray-700">Name (English)</label>
                                     <input
@@ -310,11 +324,20 @@ export default function CategoriesPage() {
                                         className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 text-right"
                                     />
                                 </div>
+                                <div className="text-left">
+                                    <label className="block text-sm font-medium text-gray-700">Name (French)</label>
+                                    <input
+                                        type="text"
+                                        value={formData.nameFr}
+                                        onChange={(e) => setFormData({ ...formData, nameFr: e.target.value })}
+                                        className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-900 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                                    />
+                                </div>
                             </div>
 
                             <div className="space-y-4">
                                 <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest text-left">Homepage Descriptions (Short)</h3>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                     <div className="text-left">
                                         <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-widest">English</label>
                                         <textarea
@@ -333,12 +356,21 @@ export default function CategoriesPage() {
                                             rows={2}
                                         />
                                     </div>
+                                    <div className="text-left">
+                                        <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-widest">French</label>
+                                        <textarea
+                                            value={formData.homeDescriptionFr}
+                                            onChange={(e) => setFormData({ ...formData, homeDescriptionFr: e.target.value })}
+                                            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                                            rows={2}
+                                        />
+                                    </div>
                                 </div>
                             </div>
 
                             <div className="space-y-4">
                                 <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest text-left">Product Page Descriptions (Detailed)</h3>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                     <div className="text-left">
                                         <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-widest">English</label>
                                         <textarea
@@ -354,6 +386,15 @@ export default function CategoriesPage() {
                                             value={formData.productPageDescriptionAr}
                                             onChange={(e) => setFormData({ ...formData, productPageDescriptionAr: e.target.value })}
                                             className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 text-right"
+                                            rows={4}
+                                        />
+                                    </div>
+                                    <div className="text-left">
+                                        <label className="block text-[10px] font-bold text-gray-500 uppercase tracking-widest">French</label>
+                                        <textarea
+                                            value={formData.productPageDescriptionFr}
+                                            onChange={(e) => setFormData({ ...formData, productPageDescriptionFr: e.target.value })}
+                                            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-900 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
                                             rows={4}
                                         />
                                     </div>

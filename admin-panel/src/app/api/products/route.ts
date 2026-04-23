@@ -77,8 +77,13 @@ export async function POST(req: NextRequest) {
     const formData = await req.formData();
     const nameEn = formData.get('nameEn') as string;
     const nameAr = formData.get('nameAr') as string;
+    const nameFrRaw = formData.get('nameFr') as string | null;
+    const nameFr = nameFrRaw && nameFrRaw.trim() ? nameFrRaw.trim() : null;
     const descriptionEn = formData.get('descriptionEn') as string;
     const descriptionAr = formData.get('descriptionAr') as string;
+    const descriptionFrRaw = formData.get('descriptionFr') as string | null;
+    const descriptionFr =
+      descriptionFrRaw && descriptionFrRaw.trim() ? descriptionFrRaw.trim() : null;
     const categoryId = formData.get('categoryId') as string;
     
     // Handle main image
@@ -101,8 +106,10 @@ export async function POST(req: NextRequest) {
     const productData: any = {
       nameEn,
       nameAr,
+      nameFr,
       descriptionEn,
       descriptionAr,
+      descriptionFr,
       categoryId,
       image: imageUrl || null,
       catalogs: catalogUrls,

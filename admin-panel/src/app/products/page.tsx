@@ -11,8 +11,10 @@ interface Product {
     id: string;
     nameEn: string;
     nameAr: string;
+    nameFr?: string | null;
     descriptionEn: string;
     descriptionAr: string;
+    descriptionFr?: string | null;
     image: string | null;
     categoryId: string;
     category: { nameEn: string };
@@ -161,7 +163,7 @@ export default function ProductsPage() {
                         <tbody className="divide-y divide-gray-200 bg-white text-slate-700">
                             {loading ? (
                                 <tr>
-                                    <td colSpan={5} className="px-6 py-20 text-center">
+                                    <td colSpan={6} className="px-6 py-20 text-center">
                                         <div className="flex justify-center">
                                             <div className="h-8 w-8 animate-spin rounded-full border-4 border-indigo-600 border-t-transparent"></div>
                                         </div>
@@ -169,7 +171,7 @@ export default function ProductsPage() {
                                 </tr>
                             ) : (products?.length || 0) === 0 ? (
                                 <tr>
-                                    <td colSpan={5} className="px-6 py-20 text-center text-gray-500 italic">No products found.</td>
+                                    <td colSpan={6} className="px-6 py-20 text-center text-gray-500 italic">No products found.</td>
                                 </tr>
                             ) : (
                                 products?.map((prod) => (
@@ -188,6 +190,9 @@ export default function ProductsPage() {
                                         <td className="px-6 py-4">
                                             <div className="text-sm font-bold text-gray-900">{prod.nameEn}</div>
                                             <div className="text-[10px] text-gray-400 font-medium uppercase tracking-wider">{prod.nameAr}</div>
+                                            {prod.nameFr ? (
+                                                <div className="text-[10px] text-gray-500 font-medium mt-0.5">{prod.nameFr}</div>
+                                            ) : null}
                                         </td>
                                         <td className="whitespace-nowrap px-6 py-4 text-sm">
                                             <span className="px-2.5 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-100 text-[10px] font-bold uppercase tracking-widest">{prod.category?.nameEn}</span>

@@ -1,0 +1,304 @@
+{
+    "nav": {
+        "home": "Accueil",
+        "about": "À propos",
+        "products": "Produits",
+        "compliance": "Conformité",
+        "contact": "Contact",
+        "requestQuote": "Demander un devis"
+    },
+    "footer": {
+        "description": "Excellence d'ingénierie en protection incendie et solutions de sécurité par GHaus Corp. Reconnue par les gouvernements, les industries et les entreprises du monde entier.",
+        "quickInquiry": "DEMANDE RAPIDE",
+        "quickLinks": "LIENS RAPIDES",
+        "products": "PRODUITS",
+        "contactInfo": "COORDONNÉES",
+        "rights": "Tous droits réservés.",
+        "privacy": "Politique de confidentialité",
+        "terms": "Conditions d'utilisation",
+        "success": "Demande envoyée avec succès ! Nous vous répondrons rapidement.",
+        "sendAnother": "Envoyer une autre demande",
+        "namePlaceholder": "Votre nom",
+        "emailPlaceholder": "Adresse e-mail",
+        "messagePlaceholder": "Votre message",
+        "captchaQuestion": "Combien font {{num1}} + {{num2}} ?",
+        "captchaAnswer": "Réponse",
+        "sendButton": "Envoyer la demande",
+        "sending": "Envoi en cours..."
+    },
+    "home": {
+        "hero": {
+            "tagline": "GHaus Corp — Protection incendie et sécurité",
+            "titlePart1": "PROTÉGER DES VIES ET ",
+            "titleHighlight": "LES INFRASTRUCTURES",
+            "titlePart2": " DANS LE MONDE",
+            "subtitle": "Excellence d'ingénierie en protection incendie, systèmes de sécurité et solutions clés en main. Reconnue par les gouvernements, les industries et les entreprises dans plus de 45 pays.",
+            "explore": "Découvrir les solutions",
+            "contact": "Nous contacter"
+        },
+        "stats": {
+            "mena": "Pays dans la région MENA",
+            "projects": "Projets réalisés",
+            "years": "Années d'expérience",
+            "products": "Produits"
+        },
+        "solutions": {
+            "tagline": "Nos solutions",
+            "title": "CATÉGORIES DE PRODUITS",
+            "subtitle": "Gamme complète de produits de protection incendie et de sécurité, conçus pour la fiabilité et la conformité.",
+            "categories": {
+                "lighting": {
+                    "title": "Éclairage",
+                    "desc": "Éclairage architectural et de façade"
+                },
+                "devices": {
+                    "title": "Appareils et contrôles",
+                    "desc": "Détecteurs de chaleur, déclencheurs manuels"
+                },
+                "suppression": {
+                    "title": "Systèmes d'extinction",
+                    "desc": "Extincteurs portables de haute qualité et systèmes brumisation d'eau."
+                },
+                "valves": {
+                    "title": "Vannes",
+                    "desc": "Vannes à guillotine, papillon, clapet, à boisseau sphérique, crépines, régulation de pression"
+                },
+                "safety": {
+                    "title": "Équipements de sécurité",
+                    "desc": "Douches oculaires/faciales, douches de sécurité, douches d'urgence, douches combinées, douches sur réservoir"
+                },
+                "electrical": {
+                    "title": "Électricité et accessoires",
+                    "desc": "Éclairage de secours et signalisation de sortie. Interrupteurs de débit, pressostat, appareils antidéflagrants."
+                }
+            }
+        },
+        "industries": {
+            "tagline": "Secteurs desservis",
+            "title": "UNE CONFIANCE ÉTABLIE DANS TOUS LES SECTEURS",
+            "names": {
+                "oilGas": "Pétrole et gaz",
+                "airports": "Aéroports",
+                "marine": "Marine",
+                "commercial": "Commercial",
+                "hospitals": "Hôpitaux",
+                "industrial": "Industriel",
+                "infrastructure": "Infrastructure"
+            }
+        },
+        "reach": {
+            "tagline": "Notre présence",
+            "title": "PRÉSENCE MONDIALE",
+            "subtitle": "Avec des bureaux et partenaires dans le monde entier, nous déployons des solutions incendie et sécurité partout où vous en avez besoin.",
+            "locations": {
+                "northAmerica": "Amérique du Nord",
+                "usaCanada": "États-Unis et Canada",
+                "uae": "EAU",
+                "dubai": "Dubaï",
+                "uk": "Royaume-Uni",
+                "birmingham": "Birmingham",
+                "india": "Inde",
+                "bangalore": "Bangalore"
+            }
+        },
+        "standards": {
+            "tagline": "Conformité et normes",
+            "title": "CONFORMITÉ ET HOMOLOGATIONS",
+            "labels": {
+                "fireProtection": "Protection incendie",
+                "productSafety": "Sécurité des produits",
+                "lossPrevention": "Prévention des pertes",
+                "govApproval": "Approbation gouvernementale"
+            }
+        }
+    },
+    "about": {
+        "hero": {
+            "tagline": "Excellence d'ingénierie",
+            "titlePart1": "UN HÉRITAGE DE SÉCURITÉ ET ",
+            "titleHighlight": "D'INNOVATION",
+            "subtitle": "Depuis plus d'une décennie, Ghaus Corp est à l'avant-garde de la protection incendie et de la sécurité, en livrant des solutions d'ingénierie de classe mondiale pour protéger l'essentiel."
+        },
+        "mission": {
+            "title": "Notre mission",
+            "desc": "Fournir des solutions incendie et de sécurité innovantes, fiables et conformes pour garantir le plus haut niveau de protection des vies et des infrastructures dans le monde."
+        },
+        "vision": {
+            "title": "Notre vision",
+            "desc": "Être le partenaire le plus fiable au monde en matière de sécurité incendie, reconnu pour l'excellence d'ingénierie, la qualité des produits et un engagement indéfectible envers la sécurité."
+        },
+        "quality": {
+            "title": "Assurance qualité",
+            "desc": "Nos produits subissent des essais rigoureux et des contrôles qualité pour répondre aux normes internationales les plus exigeantes.",
+            "points": {
+                "testing": "Essais et certifications rigoureux",
+                "rd": "R&D continue",
+                "solutions": "Solutions sur mesure"
+            }
+        },
+        "compliance": {
+            "title": "Conformité internationale",
+            "desc": "Nous sommes fiers de nos certifications et approbations auprès des principales organisations de sécurité dans le monde."
+        }
+    },
+    "products": {
+        "title": "CATÉGORIES DE PRODUITS",
+        "tagline": "Nos produits",
+        "subtitle": "Parcourez notre gamme complète de produits de protection incendie et de sécurité, conçus pour la fiabilité et testés selon les normes internationales.",
+        "viewProducts": "Voir les produits",
+        "viewAll": "Voir tous les produits",
+        "catalogs": "Catalogues techniques",
+        "viewDetails": "Voir les détails",
+        "moreCatalogs": "+{{count}} catalogues supplémentaires",
+        "description": "Description",
+        "sendEnquiry": "Envoyer une demande",
+        "downloadDataSheet": "Télécharger la fiche technique",
+        "alternativeDataSheet": "Fiche technique alternative {{n}}",
+        "enquiryModal": {
+            "title": "Envoyer une demande",
+            "intro": "Vous êtes intéressé par {{product}} ? Remplissez le formulaire ci-dessous et notre équipe vous contactera rapidement.",
+            "fullName": "Nom complet *",
+            "email": "Adresse e-mail *",
+            "phone": "Téléphone",
+            "country": "Pays *",
+            "address": "Adresse / ville",
+            "comments": "Commentaires",
+            "placeholderName": "Jean Dupont",
+            "placeholderEmail": "jean@exemple.com",
+            "placeholderPhone": "+971 50 000 0000",
+            "placeholderAddress": "Business Bay, Dubaï",
+            "placeholderComments": "Parlez-nous de vos besoins...",
+            "selectCountry": "Choisir un pays",
+            "countryOther": "Autre",
+            "cancel": "Annuler",
+            "send": "Envoyer la demande",
+            "sending": "Envoi en cours...",
+            "toastRequired": "Veuillez remplir tous les champs obligatoires.",
+            "toastPhoneInvalid": "Veuillez saisir un numéro de téléphone valide.",
+            "toastSuccess": "Demande envoyée avec succès ! Nous vous contacterons bientôt.",
+            "toastError": "Échec de l'envoi. Veuillez réessayer plus tard."
+        },
+        "categories": {
+            "valves": {
+                "title": "Vannes",
+                "desc": "Gamme complète de vannes de protection incendie pour calibres inférieurs à 2 ½”.",
+                "items": [
+                    "Guillotine",
+                    "Papillon",
+                    "Clapet",
+                    "Boisseau sphérique",
+                    "Crépines",
+                    "Régulation de pression",
+                    "Vannes test et purge",
+                    "Purgeurs d'air"
+                ]
+            },
+            "devices": {
+                "title": "Appareils et contrôles",
+                "desc": "Appareils et contrôles de pointe, y compris zones à risque avec options antidéflagrantes.",
+                "items": [
+                    "Détecteurs de chaleur",
+                    "Déclencheurs manuels"
+                ]
+            },
+            "suppression": {
+                "title": "Systèmes d'extinction",
+                "desc": "Extincteurs portables de haute qualité et systèmes brumisation d'eau.",
+                "items": [
+                    "Poudre ABC",
+                    "CO2",
+                    "Mousse",
+                    "Brumisation d'eau"
+                ]
+            },
+            "safety": {
+                "title": "Équipements de sécurité",
+                "desc": "Produits de sécurité fabriqués selon les standards les plus élevés, avec solutions personnalisées pour vos projets exigeants.",
+                "items": [
+                    "Douche oculaire/faciale",
+                    "Douches de sécurité",
+                    "Douches combinées",
+                    "Douches de sécurité extérieures réfrigérées",
+                    "Douches extérieures réfrigérées solaires"
+                ]
+            },
+            "lighting": {
+                "title": "Éclairage",
+                "desc": "Produits conçus avec précision pour des solutions d'éclairage efficaces et intelligentes pour vos actifs.",
+                "items": [
+                    "Architectural",
+                    "Éclairage de façade"
+                ]
+            },
+            "electrical": {
+                "title": "Électricité et accessoires",
+                "desc": "Appareils et contrôles électriques des leaders du secteur.",
+                "items": [
+                    "Interrupteurs de débit",
+                    "Pressostats",
+                    "Appareils antidéflagrants",
+                    "Interrupteurs de supervision",
+                    "Éclairage de secours et signalisation de sortie",
+                    "Compresseurs d'air",
+                    "Manomètres",
+                    "Débitmètres"
+                ]
+            }
+        }
+    },
+    "compliance": {
+        "title": "Conformité et homologations",
+        "subtitle": "Nous maintenons les certifications internationales les plus exigeantes et respectons les principales normes de sécurité incendie, pour une confiance et une fiabilité mondiales.",
+        "certs": {
+            "nfpa": {
+                "name": "Conformité NFPA",
+                "category": "Protection incendie",
+                "desc": "Conformité complète aux codes et normes de la National Fire Protection Association.",
+                "authority": "NFPA, USA"
+            },
+            "ul": {
+                "name": "Listé UL",
+                "category": "Sécurité des produits",
+                "desc": "Produits testés et certifiés par Underwriters Laboratories pour la conformité en matière de sécurité.",
+                "authority": "UL LLC, USA"
+            },
+            "fm": {
+                "name": "Approuvé FM",
+                "category": "Prévention des pertes",
+                "desc": "Approbation Factory Mutual pour les produits et services de prévention des pertes matérielles.",
+                "authority": "FM Global, USA"
+            },
+            "civilDefense": {
+                "name": "Approuvé par la défense civile",
+                "category": "Approbation gouvernementale",
+                "desc": "Approuvé par les autorités de défense civile dans plusieurs pays pour les installations de sécurité incendie.",
+                "authority": "Plusieurs autorités gouvernementales"
+            }
+        }
+    },
+    "contact": {
+        "title": "CONTACTEZ-NOUS",
+        "tagline": "Restons en contact",
+        "subtitle": "Contactez notre équipe internationale pour des demandes, des devis ou des partenariats.",
+        "formTitle": "ENVOYER UNE DEMANDE",
+        "successMessage": "Message envoyé avec succès ! Nous répondons sous 24 heures.",
+        "fullName": "Nom complet",
+        "companyName": "Société",
+        "email": "Adresse e-mail",
+        "phone": "Téléphone",
+        "subject": "Objet",
+        "message": "Parlez-nous de vos besoins...",
+        "securityCheck": "Contrôle : combien font {{num1}} + {{num2}} ?",
+        "answer": "Réponse",
+        "sendButton": "Envoyer le message",
+        "sending": "Envoi...",
+        "respondTime": "Nous répondons sous 24 heures",
+        "globalOffices": "BUREAUX MONDIAUX",
+        "offices": {
+            "canada": "Ontario, Canada",
+            "uae": "Dubaï, EAU",
+            "uk": "West Midlands, Royaume-Uni",
+            "india": "Bangalore, Inde"
+        }
+    }
+}

@@ -54,12 +54,12 @@ export const EnquiryModal = ({ isOpen, onClose, productName }: EnquiryModalProps
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.country) {
-      toast.error("Please fill in all required fields.");
+      toast.error(t("products.enquiryModal.toastRequired"));
       return;
     }
 
     if (formData.phone && !isValidPhoneNumber(formData.phone)) {
-      toast.error("Please enter a valid phone number.");
+      toast.error(t("products.enquiryModal.toastPhoneInvalid"));
       return;
     }
 
@@ -76,12 +76,12 @@ export const EnquiryModal = ({ isOpen, onClose, productName }: EnquiryModalProps
         message: formData.comment || `Enquiry for ${productName}`,
         source: `Product Details: ${productName}`
       });
-      toast.success("Enquiry sent successfully! We will contact you soon.");
+      toast.success(t("products.enquiryModal.toastSuccess"));
       onClose();
       setFormData({ name: "", address: "", phone: "", email: "", country: "", comment: "" });
     } catch (error) {
       console.error(error);
-      toast.error("Failed to send enquiry. Please try again later.");
+      toast.error(t("products.enquiryModal.toastError"));
     } finally {
       setIsSubmitting(false);
     }
@@ -92,20 +92,19 @@ export const EnquiryModal = ({ isOpen, onClose, productName }: EnquiryModalProps
       <DialogContent className="w-[min(100%,calc(100vw-1.5rem))] max-w-[min(640px,calc(100vw-1.5rem))] max-h-[min(90dvh,90vh)] overflow-y-auto overflow-x-hidden p-4 sm:p-6">
         <DialogHeader className="min-w-0 shrink-0">
           <DialogTitle className="text-xl font-bold text-primary uppercase sm:text-2xl">
-            Send Enquiry
+            {t("products.enquiryModal.title")}
           </DialogTitle>
           <DialogDescription className="text-pretty">
-            Interested in <span className="font-semibold text-foreground">{productName}</span>?{" "}
-            Fill out the form below and our team will get back to you shortly.
+            {t("products.enquiryModal.intro", { product: productName })}
           </DialogDescription>
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="min-w-0 space-y-4 py-2 sm:py-4">
           <div className="grid min-w-0 gap-2">
-            <Label htmlFor="name">Full Name *</Label>
+            <Label htmlFor="name">{t("products.enquiryModal.fullName")}</Label>
             <Input 
               id="name" 
-              placeholder="John Doe" 
+              placeholder={t("products.enquiryModal.placeholderName")} 
               required 
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -114,11 +113,11 @@ export const EnquiryModal = ({ isOpen, onClose, productName }: EnquiryModalProps
           </div>
 
           <div className="grid min-w-0 gap-2">
-            <Label htmlFor="email">Email Address *</Label>
+            <Label htmlFor="email">{t("products.enquiryModal.email")}</Label>
             <Input 
               id="email" 
               type="email" 
-              placeholder="john@example.com" 
+              placeholder={t("products.enquiryModal.placeholderEmail")} 
               required 
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -129,12 +128,12 @@ export const EnquiryModal = ({ isOpen, onClose, productName }: EnquiryModalProps
           {/* Full-width rows: side-by-side phone + country breaks PhoneInput below ~560px per column */}
           <div className="grid min-w-0 grid-cols-1 gap-4">
             <div className="grid min-w-0 gap-2">
-              <Label htmlFor="phone">Phone Number</Label>
+              <Label htmlFor="phone">{t("products.enquiryModal.phone")}</Label>
               <div className="min-w-0 w-full [&_.PhoneInput]:flex [&_.PhoneInput]:w-full [&_.PhoneInput]:min-w-0 [&_.PhoneInput]:items-center [&_.PhoneInput]:gap-1">
                 <PhoneInput
                   id="phone"
                   defaultCountry="AE"
-                  placeholder="+971 50 000 0000"
+                  placeholder={t("products.enquiryModal.placeholderPhone")}
                   value={formData.phone}
                   onChange={(value) => setFormData({ ...formData, phone: value || '' })}
                   className={cn(
@@ -151,29 +150,29 @@ export const EnquiryModal = ({ isOpen, onClose, productName }: EnquiryModalProps
               </div>
             </div>
             <div className="grid min-w-0 gap-2">
-              <Label htmlFor="country">Country *</Label>
+              <Label htmlFor="country">{t("products.enquiryModal.country")}</Label>
               <Select 
                 value={formData.country} 
                 onValueChange={(val) => setFormData({ ...formData, country: val })}
               >
                 <SelectTrigger id="country" className="w-full min-w-0">
-                  <SelectValue placeholder="Select Country" />
+                  <SelectValue placeholder={t("products.enquiryModal.selectCountry")} />
                 </SelectTrigger>
                 <SelectContent>
                   {countries.map((c) => (
                     <SelectItem key={c} value={c}>{c}</SelectItem>
                   ))}
-                  <SelectItem value="Other">Other</SelectItem>
+                  <SelectItem value="Other">{t("products.enquiryModal.countryOther")}</SelectItem>
                 </SelectContent>
               </Select>
             </div>
           </div>
 
           <div className="grid min-w-0 gap-2">
-            <Label htmlFor="address">Address / City</Label>
+            <Label htmlFor="address">{t("products.enquiryModal.address")}</Label>
             <Input 
               id="address" 
-              placeholder="Business Bay, Dubai" 
+              placeholder={t("products.enquiryModal.placeholderAddress")} 
               value={formData.address}
               onChange={(e) => setFormData({ ...formData, address: e.target.value })}
               className="min-w-0"
@@ -181,10 +180,10 @@ export const EnquiryModal = ({ isOpen, onClose, productName }: EnquiryModalProps
           </div>
 
           <div className="grid min-w-0 gap-2">
-            <Label htmlFor="comment">Comments</Label>
+            <Label htmlFor="comment">{t("products.enquiryModal.comments")}</Label>
             <Textarea 
               id="comment" 
-              placeholder="Tell us about your requirements..." 
+              placeholder={t("products.enquiryModal.placeholderComments")} 
               rows={4}
               value={formData.comment}
               onChange={(e) => setFormData({ ...formData, comment: e.target.value })}
@@ -200,7 +199,7 @@ export const EnquiryModal = ({ isOpen, onClose, productName }: EnquiryModalProps
               disabled={isSubmitting}
               className="w-full sm:w-auto"
             >
-              Cancel
+              {t("products.enquiryModal.cancel")}
             </Button>
             <Button 
               type="submit" 
@@ -209,10 +208,12 @@ export const EnquiryModal = ({ isOpen, onClose, productName }: EnquiryModalProps
             >
               {isSubmitting ? (
                 <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Sending...
+                  <Loader2 className="me-2 h-4 w-4 animate-spin" />
+                  {t("products.enquiryModal.sending")}
                 </>
-              ) : "Send Enquiry"}
+              ) : (
+                t("products.enquiryModal.send")
+              )}
             </Button>
           </DialogFooter>
         </form>

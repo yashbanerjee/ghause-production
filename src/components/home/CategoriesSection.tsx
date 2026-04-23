@@ -5,6 +5,10 @@ import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
 import { getApiBaseUrl } from "@/lib/apiBase";
+import {
+  localizedCategoryHomeDesc,
+  localizedCategoryName,
+} from "@/lib/localeContent";
 
 const CategoriesSection = () => {
   const { t, i18n } = useTranslation();
@@ -73,13 +77,11 @@ const CategoriesSection = () => {
                       )}
                     </div>
                     <h3 className="font-display text-xl text-foreground mb-2 tracking-wide">
-                      {isRtl ? cat.nameAr : cat.nameEn}
+                      {localizedCategoryName(cat, i18n.language)}
                     </h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">
-                      {isRtl
-                        ? (cat.homeDescriptionAr || t(`home.solutions.categories.${cat.nameEn.toLowerCase()}.desc`))
-                        : (cat.homeDescriptionEn || t(`home.solutions.categories.${cat.nameEn.toLowerCase()}.desc`))
-                      }
+                      {localizedCategoryHomeDesc(cat, i18n.language) ||
+                        t(`home.solutions.categories.${cat.nameEn.toLowerCase()}.desc`)}
                     </p>
                   </Link>
                 </motion.div>

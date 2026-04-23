@@ -20,6 +20,7 @@ export async function GET(req: NextRequest) {
         OR: [
           { nameEn: { contains: search, mode: 'insensitive' as const } },
           { nameAr: { contains: search, mode: 'insensitive' as const } },
+          { nameFr: { contains: search, mode: 'insensitive' as const } },
         ]
       } : {})
     };
@@ -81,10 +82,20 @@ export async function POST(req: NextRequest) {
     const formData = await req.formData();
     const nameEn = formData.get('nameEn') as string;
     const nameAr = formData.get('nameAr') as string;
+    const nameFrRaw = formData.get('nameFr') as string | null;
+    const nameFr = nameFrRaw?.trim() ? nameFrRaw.trim() : null;
     const homeDescriptionEn = formData.get('homeDescriptionEn') as string;
     const homeDescriptionAr = formData.get('homeDescriptionAr') as string;
+    const homeDescriptionFrRaw = formData.get('homeDescriptionFr') as string | null;
+    const homeDescriptionFr = homeDescriptionFrRaw?.trim()
+      ? homeDescriptionFrRaw.trim()
+      : null;
     const productPageDescriptionEn = formData.get('productPageDescriptionEn') as string;
     const productPageDescriptionAr = formData.get('productPageDescriptionAr') as string;
+    const productPageDescriptionFrRaw = formData.get('productPageDescriptionFr') as string | null;
+    const productPageDescriptionFr = productPageDescriptionFrRaw?.trim()
+      ? productPageDescriptionFrRaw.trim()
+      : null;
     
     const iconFile = formData.get('icon') as File | null;
     const imageFile = formData.get('image') as File | null;
@@ -104,10 +115,13 @@ export async function POST(req: NextRequest) {
       data: {
         nameEn,
         nameAr,
+        nameFr,
         homeDescriptionEn,
         homeDescriptionAr,
+        homeDescriptionFr,
         productPageDescriptionEn,
         productPageDescriptionAr,
+        productPageDescriptionFr,
         icon: iconUrl || null,
         image: imageUrl || null,
         isActive: true

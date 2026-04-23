@@ -13,6 +13,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
+import {
+  localizedCategoryName,
+  localizedProductName,
+} from "@/lib/localeContent";
 
 const Header = () => {
   const { t, i18n } = useTranslation();
@@ -61,7 +65,13 @@ const Header = () => {
             <DropdownMenu>
               <DropdownMenuTrigger className="flex items-center gap-1.5 opacity-80 hover:opacity-100 transition-opacity outline-none focus:outline-none">
                 <Globe className="w-3.5 h-3.5" />
-                <span className="text-xs font-medium uppercase">{i18n.language.startsWith('ar') ? 'AR' : 'EN'}</span>
+                <span className="text-xs font-medium uppercase">
+                  {i18n.language.startsWith("ar")
+                    ? "AR"
+                    : i18n.language.startsWith("fr")
+                      ? "FR"
+                      : "EN"}
+                </span>
                 <ChevronDown className="w-3 h-3 opacity-50" />
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="bg-card border-border">
@@ -70,7 +80,16 @@ const Header = () => {
                   className="flex items-center justify-between gap-2 text-xs cursor-pointer"
                 >
                   English
-                  {!i18n.language.startsWith('ar') && <Check className="w-3 h-3 text-primary" />}
+                  {!i18n.language.startsWith('ar') && !i18n.language.startsWith('fr') && (
+                    <Check className="w-3 h-3 text-primary" />
+                  )}
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() => changeLanguage('fr')}
+                  className="flex items-center justify-between gap-2 text-xs cursor-pointer"
+                >
+                  Français (French)
+                  {i18n.language.startsWith('fr') && <Check className="w-3 h-3 text-primary" />}
                 </DropdownMenuItem>
                 <DropdownMenuItem
                   onClick={() => changeLanguage('ar')}
@@ -126,7 +145,7 @@ const Header = () => {
                           className="font-bold text-[13px] uppercase tracking-wider text-foreground hover:text-primary transition-colors block border-b border-border/50 pb-2"
                           onClick={() => setMegaOpen(false)}
                         >
-                          {isRtl ? cat.nameAr : cat.nameEn}
+                          {localizedCategoryName(cat, i18n.language)}
                         </Link>
                         <ul className="space-y-2">
                           {cat.products?.slice(0, 8).map((prod: any) => (
@@ -137,7 +156,7 @@ const Header = () => {
                                 onClick={() => setMegaOpen(false)}
                               >
                                 <span className="w-1 h-1 rounded-full bg-border group-hover/item:bg-primary transition-colors" />
-                                {isRtl ? prod.nameAr : prod.nameEn}
+                                {localizedProductName(prod, i18n.language)}
                               </Link>
                             </li>
                           ))}

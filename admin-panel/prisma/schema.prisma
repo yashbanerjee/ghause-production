@@ -17,10 +17,13 @@ model Category {
   id                     String    @id @default(uuid())
   nameEn                 String
   nameAr                 String
+  nameFr                 String?
   homeDescriptionEn      String?
   homeDescriptionAr      String?
+  homeDescriptionFr      String?
   productPageDescriptionEn String?
   productPageDescriptionAr String?
+  productPageDescriptionFr String?
   icon                   String?
   image                  String?
   isActive               Boolean   @default(true)
@@ -32,8 +35,10 @@ model Product {
   id            String   @id @default(uuid())
   nameEn        String
   nameAr        String
+  nameFr        String?
   descriptionEn String
   descriptionAr String
+  descriptionFr String?
   image         String?
   categoryId    String
   category      Category @relation(fields: [categoryId], references: [id])

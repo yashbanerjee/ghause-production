@@ -9,6 +9,7 @@ import { toast } from "sonner";
 import logo from "@/assets/logo.png";
 import { useTranslation } from "react-i18next";
 import { getApiBaseUrl } from "@/lib/apiBase";
+import { localizedProductName } from "@/lib/localeContent";
 
 const Footer = () => {
   const { t, i18n } = useTranslation();
@@ -157,7 +158,7 @@ const Footer = () => {
                         to={`/product/${p.id}`} 
                         className="opacity-70 hover:opacity-100 hover:text-primary transition-all line-clamp-1"
                       >
-                        {isRtl ? p.nameAr : p.nameEn}
+                        {localizedProductName(p, i18n.language)}
                       </Link>
                     </li>
                   ))

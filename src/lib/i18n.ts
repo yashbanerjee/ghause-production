@@ -3,6 +3,7 @@ import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import enTranslations from "../constants/translations/en.json";
 import arTranslations from "../constants/translations/ar.json";
+import frTranslations from "../constants/translations/fr.json";
 
 i18n
     .use(LanguageDetector)
@@ -15,8 +16,12 @@ i18n
             ar: {
                 translation: arTranslations,
             },
+            fr: {
+                translation: frTranslations,
+            },
         },
         fallbackLng: "en",
+        supportedLngs: ["en", "ar", "fr"],
         load: 'languageOnly',
         interpolation: {
             escapeValue: false,

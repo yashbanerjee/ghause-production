@@ -55,15 +55,25 @@ export async function PUT(req: NextRequest, context: Context) {
 
     // Extract text fields
     const fields = [
-      'nameEn', 'nameAr', 
-      'homeDescriptionEn', 'homeDescriptionAr', 
-      'productPageDescriptionEn', 'productPageDescriptionAr'
+      'nameEn', 'nameAr', 'nameFr',
+      'homeDescriptionEn', 'homeDescriptionAr', 'homeDescriptionFr',
+      'productPageDescriptionEn', 'productPageDescriptionAr', 'productPageDescriptionFr',
     ];
 
     fields.forEach(field => {
       const value = formData.get(field);
       if (value !== null) {
-        updateData[field] = value as string;
+        if (
+          (field === 'nameFr' ||
+            field === 'homeDescriptionFr' ||
+            field === 'productPageDescriptionFr') &&
+          typeof value === 'string' &&
+          !value.trim()
+        ) {
+          updateData[field] = null;
+        } else {
+          updateData[field] = value as string;
+        }
       }
     });
 
